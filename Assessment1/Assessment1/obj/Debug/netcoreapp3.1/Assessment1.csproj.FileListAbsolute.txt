@@ -1,0 +1,11 @@
+C:\Users\maxja\source\repos\Uni-repos\Assessment1\Assessment1\bin\Debug\netcoreapp3.1\Assessment1.exe
+C:\Users\maxja\source\repos\Uni-repos\Assessment1\Assessment1\bin\Debug\netcoreapp3.1\Assessment1.deps.json
+C:\Users\maxja\source\repos\Uni-repos\Assessment1\Assessment1\bin\Debug\netcoreapp3.1\Assessment1.runtimeconfig.json
+C:\Users\maxja\source\repos\Uni-repos\Assessment1\Assessment1\bin\Debug\netcoreapp3.1\Assessment1.runtimeconfig.dev.json
+C:\Users\maxja\source\repos\Uni-repos\Assessment1\Assessment1\bin\Debug\netcoreapp3.1\Assessment1.dll
+C:\Users\maxja\source\repos\Uni-repos\Assessment1\Assessment1\bin\Debug\netcoreapp3.1\Assessment1.pdb
+C:\Users\maxja\source\repos\Uni-repos\Assessment1\Assessment1\obj\Debug\netcoreapp3.1\Assessment1.csprojAssemblyReference.cache
+C:\Users\maxja\source\repos\Uni-repos\Assessment1\Assessment1\obj\Debug\netcoreapp3.1\Assessment1.AssemblyInfoInputs.cache
+C:\Users\maxja\source\repos\Uni-repos\Assessment1\Assessment1\obj\Debug\netcoreapp3.1\Assessment1.AssemblyInfo.cs
+C:\Users\maxja\source\repos\Uni-repos\Assessment1\Assessment1\obj\Debug\netcoreapp3.1\Assessment1.dll
+C:\Users\maxja\source\repos\Uni-repos\Assessment1\Assessment1\obj\Debug\netcoreapp3.1\Assessment1.pdb
