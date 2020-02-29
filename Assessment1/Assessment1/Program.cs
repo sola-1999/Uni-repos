@@ -99,26 +99,54 @@ namespace Assessment1
 
         }
 
-        static void bubbleSort(int[] a, int n)
+        static void bubbleSort(int[] ba, int n)
         {
 
             for (int i = 0; i < n - 1; i++)//Loops throgh each intger in the array 
             {
                 for (int j = 0; j < n - 1 - i; j++)//Loops through each number before i in thr array
                 {
-                    if (a[j + 1] < a[j])//Checks if j is more or less than the number to its right
+                    if (ba[j + 1] < ba[j])//Checks if j is more or less than the number to its right
                     {
-                        int temp = a[j];//stores j in a temp
-                        a[j] = a[j + 1];// swaps j and the number next to it
-                        a[j + 1] = temp;// swaps the number next to j with j stored in temp
+                        int temp = ba[j];//stores j in a temp
+                        ba[j] = ba[j + 1];// swaps j and the number next to it
+                        ba[j + 1] = temp;// swaps the number next to j with j stored in temp
 
                     }
 
                 }
             }
             Console.WriteLine("This is bubble sort: ");
-            Console.WriteLine(string.Join(" ", a));//outputs the array
+            Console.WriteLine(string.Join(" ", ba));//outputs the array
 
+        }
+
+        static void insertionSort(int [] ia, int n)
+        {
+            int pointer = 1;//sets a pointer
+            int index;//sets an index
+            while (pointer < n)//Loops through the array
+            {
+                int temp = ia[pointer];//Temp value to hold to value in pointer
+                
+                for (index = pointer; index > 0; index--)//Loops through each value lower than the index
+                {
+                    
+                    if (temp < ia[index-1])//Checks if the pointers value is less than the current index
+                    {
+                        ia[index] = ia[index - 1];//Moves the number one left from the index
+                    }
+                    else
+                    {
+                        break;//leaves loop
+                    }
+                    
+                }
+                ia[index] = temp;//Sets the index value to the pointers value
+                pointer++;//Increments the pointer
+            }
+            Console.WriteLine("This is inserstion sort: ");
+            Console.WriteLine(string.Join(" ", ia));//outputs the array
         }
 
         static void convertArray(string[] atc)
@@ -127,7 +155,10 @@ namespace Assessment1
 
             int[] intarray = Array.ConvertAll(atc, s => int.Parse(s));//Converts array of strings to array integers
 
+ 
             bubbleSort(intarray, len);//Runs the bubble sort method
+            Console.WriteLine("");
+            insertionSort(intarray, len);
         }
 
         static string LenSelect()
