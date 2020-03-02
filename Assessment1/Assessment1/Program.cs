@@ -117,7 +117,8 @@ namespace Assessment1
                 }
             }
             Console.WriteLine("This is bubble sort: ");
-            Console.WriteLine(string.Join(" ", ba));//outputs the array
+            //Console.WriteLine(string.Join(" ", ba));//outputs the array
+            disTenth(ba);
 
         }
 
@@ -146,8 +147,106 @@ namespace Assessment1
                 pointer++;//Increments the pointer
             }
             Console.WriteLine("This is inserstion sort: ");
-            Console.WriteLine(string.Join(" ", ia));//outputs the array
+            //Console.WriteLine(string.Join(" ", ia));//outputs the array
+            disTenth(ia);
         }
+
+        static void MergeInitialise(int[] ma, int n)
+        {
+            int[] temp = new int[n];//Sets temp to the value of n
+            MergeRecurs(ma, temp, 0, n - 1);//Runs a recursive sort algorithm
+            Console.WriteLine("This is Merge sort: ");
+            //Console.WriteLine(string.Join(" ", ma));//outputs the array
+            disTenth(ma);
+        }
+
+        static void MergeArray(int[] ma, int[] temp, int low, int middle, int high)
+        {
+            int resIn = low;//Stores result index
+            int tempIn = low;//Stores temporary index
+            int desIn = middle;//Stores destination index
+
+            while (tempIn < middle && desIn <= high)//Merges smaller values if the list isn't empty
+            {
+                if (ma[desIn] < temp[tempIn])
+                {
+                    ma[resIn++] = ma[desIn++];//Moves smaller values
+                }
+                else
+                {
+                    ma[resIn++] = temp[tempIn++];//Moves smaller values to temp
+                }
+            }
+            while( tempIn < middle)
+            {
+                ma[resIn++] = temp[tempIn++];//Sorts values still left in temp
+            }
+        }
+
+        static void MergeRecurs(int[] ma, int[]temp, int low, int high)
+        {
+            int n = high - low + 1;//Finds the middle value in the array
+            int middle = low + n / 2;//Finds middle value for split arrays
+            int i;
+
+            if (n < 2)//Checks if the middle value is below 2
+            {
+                return;
+            }
+            for (i = low; i < middle; i++)
+            {
+                temp[i] = ma[i];//Sets lower half of data into a temp array
+            }
+            MergeRecurs(temp, ma, low, middle - 1 );//Sorts the lower array
+            MergeRecurs(ma, temp, middle, high);//Sorts the higher array
+            MergeArray(ma, temp, low, middle, high);//Merges the array
+        }
+
+        static void QuickSort(int[] qa, int left, int right)
+        {
+            int l;//Stores a side left counter
+            int r;//Sets a side right counter
+            int pivot;//Sets a pivot point
+            int temp;//Temp to hold values
+
+            l = left;//Sets to the farmost left value
+            r = right;//Sets to the farmost right value
+
+            pivot = qa[(left + right) / 2];//Sets the pivot to a middle value
+
+            do
+            {
+                while ((qa[l] < pivot) && (l < right)) l++;//Loops through the the array from the left side
+                while ((pivot < qa[r]) && (r > left)) r--;//Loops through the the array from the right side
+
+                if (l <= r)
+                {
+                    temp = qa[l];//Stores the current left value in a temp
+                    qa[l] = qa[r];//Swaps the current right value with left
+                    qa[r] = temp;//Stores the temp value in the right location
+                    l++;
+                    r--;//Increments left and right counter
+
+
+                }
+            } while (l <= r);
+
+            if (left < r) QuickSort(qa, left, r);//Sorts if the left value is lower than the right counter
+            if (l < right) QuickSort(qa, l, right);//Sorts if the left counter is lower than the right value
+
+
+
+        }
+
+        static void QuickSortInitialise(int[] qa, int n)
+        {
+            QuickSort(qa, 0, n - 1);//Runs a quick sort
+            Console.WriteLine("This is Quick sort: ");
+            //Console.WriteLine(string.Join(" ", qa));//outputs the array
+            disTenth(qa);
+        }
+
+
 
         static void convertArray(string[] atc)
         {
@@ -158,7 +257,11 @@ namespace Assessment1
  
             bubbleSort(intarray, len);//Runs the bubble sort method
             Console.WriteLine("");
-            insertionSort(intarray, len);
+            insertionSort(intarray, len);//Runs the insertion sort method
+            Console.WriteLine("");
+            MergeInitialise(intarray, len);//Runs the merge sort method
+            Console.WriteLine("");
+            QuickSortInitialise(intarray, len);//Runs the quick sort method
         }
 
         static string LenSelect()
@@ -166,6 +269,27 @@ namespace Assessment1
             Console.WriteLine("Type which lenght array you want to select( 256, 2048): ");
             string lenSelect = Console.ReadLine();//Saves lenght selection
             return lenSelect;//Returns selection
+        }
+
+        static void disTenth(int[] dta)
+        {
+            int[] newa = null;
+            int pointCounter = 1;
+            foreach (int i in dta)
+            {
+                if (pointCounter == 10)
+                {
+                    int value = dta[i];
+                    pointCounter = 1;
+                }
+                else
+                {
+                    pointCounter++;
+                }
+                
+            }
+            Console.WriteLine(string.Join(" ", newa));
+
         }
 
     }
