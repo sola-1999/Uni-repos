@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 
 namespace Assessment1
@@ -9,7 +10,9 @@ namespace Assessment1
         static void Main(string[] args)
         {
             bool ec = true;//Used for error checking
+            int printAmount;//Stores number to choose how many elements are printed
             string[] selectedArray;
+            int[] sortedArray;
             string[] Array1_256 = System.IO.File.ReadAllLines("Net_1_256.txt");
             string[] Array2_256 = System.IO.File.ReadAllLines("Net_2_256.txt");
             string[] Array3_256 = System.IO.File.ReadAllLines("Net_3_256.txt");
@@ -18,7 +21,7 @@ namespace Assessment1
             string[] Array3_2048 = System.IO.File.ReadAllLines("Net_3_2048.txt");//Fetches files from the debug folder
 
 
-            while(ec == true)
+            while (ec == true)
             {
                 Console.WriteLine("Type the number of the array you want to sort and search (1, 2, 3): ");
                 string numSelect = Console.ReadLine();//Takes array selection from the user
@@ -30,13 +33,16 @@ namespace Assessment1
                     {
                         selectedArray = Array1_256;//Selects array
                         ec = false;//Pases error checking
-                        convertArray(selectedArray);//Runs bubble sorting
+                        sortedArray = convertArray(selectedArray);//Converts array from strings to integers
+                        chooseSort(sortedArray);//Runs the choose array method
                     }
                     else if (selectedLen == "2048")//Determines lenghts selection from user
                     {
                         selectedArray = Array1_2048;//Selects array
                         ec = false;//Pases error checking
-                        convertArray(selectedArray);//Runs bubble sorting
+
+                        sortedArray = convertArray(selectedArray);//Converts array from strings to integers
+                        chooseSort(sortedArray);//Runs the choose array method
                     }
                     else
                     {
@@ -52,16 +58,20 @@ namespace Assessment1
                     {
                         selectedArray = Array2_256;
                         ec = false;
-                        convertArray(selectedArray);
+
+                        sortedArray = convertArray(selectedArray);
+                        chooseSort(sortedArray);
                     }
                     else if (selectedLen == "2048")
                     {
                         selectedArray = Array3_2048;
                         ec = false;
-                        convertArray(selectedArray);
+
+                        sortedArray = convertArray(selectedArray);
+                        chooseSort(sortedArray);
                     }
                     else
-                    { 
+                    {
                         Console.WriteLine("Invalid input");
                         ec = true;
                     }
@@ -72,14 +82,17 @@ namespace Assessment1
                     if (selectedLen == "256")
                     {
                         selectedArray = Array3_256;
-                        convertArray(selectedArray);
+
+                        sortedArray = convertArray(selectedArray);
+                        chooseSort(sortedArray);
                         ec = false;
                     }
                     else if (selectedLen == "2048")
                     {
                         selectedArray = Array3_2048;
-                        convertArray(selectedArray);
-                        ec = false;
+
+                        sortedArray = convertArray(selectedArray);
+                        chooseSort(sortedArray);
                     }
                     else
                     {
@@ -95,7 +108,6 @@ namespace Assessment1
                 }
             }
 
-            
 
         }
 
@@ -117,8 +129,7 @@ namespace Assessment1
                 }
             }
             Console.WriteLine("This is bubble sort: ");
-            //Console.WriteLine(string.Join(" ", ba));//outputs the array
-            disTenth(ba);
+            disTenth(ba, n);//Runs disTenth method
 
         }
 
@@ -147,8 +158,7 @@ namespace Assessment1
                 pointer++;//Increments the pointer
             }
             Console.WriteLine("This is inserstion sort: ");
-            //Console.WriteLine(string.Join(" ", ia));//outputs the array
-            disTenth(ia);
+            disTenth(ia, n);//Runs disTenth method
         }
 
         static void MergeInitialise(int[] ma, int n)
@@ -156,8 +166,7 @@ namespace Assessment1
             int[] temp = new int[n];//Sets temp to the value of n
             MergeRecurs(ma, temp, 0, n - 1);//Runs a recursive sort algorithm
             Console.WriteLine("This is Merge sort: ");
-            //Console.WriteLine(string.Join(" ", ma));//outputs the array
-            disTenth(ma);
+            disTenth(ma, n);//Runs disTenth method
         }
 
         static void MergeArray(int[] ma, int[] temp, int low, int middle, int high)
@@ -242,26 +251,57 @@ namespace Assessment1
         {
             QuickSort(qa, 0, n - 1);//Runs a quick sort
             Console.WriteLine("This is Quick sort: ");
-            //Console.WriteLine(string.Join(" ", qa));//outputs the array
-            disTenth(qa);
+            disTenth(qa, n);//Runs disTenth method
         }
 
 
 
-        static void convertArray(string[] atc)
+        static int[] convertArray(string[] atc)
         {
-            int len = atc.Length;//Gets lenght of the array
 
             int[] intarray = Array.ConvertAll(atc, s => int.Parse(s));//Converts array of strings to array integers
 
- 
-            bubbleSort(intarray, len);//Runs the bubble sort method
-            Console.WriteLine("");
-            insertionSort(intarray, len);//Runs the insertion sort method
-            Console.WriteLine("");
-            MergeInitialise(intarray, len);//Runs the merge sort method
-            Console.WriteLine("");
-            QuickSortInitialise(intarray, len);//Runs the quick sort method
+            return intarray;//returns converted array to the program
+            
+        }
+
+
+        static void chooseSort(int[] array)
+        {
+            int len = array.Length;//Gets lenght of the array
+            bool ec2 = true;//Used for error checking
+            while (ec2 == true)
+            {
+                Console.WriteLine("Choose a sort algorithm (b = Bubble, i = insertion, m = Merge, q = Quick);  ");
+                string sortSelect = Console.ReadLine();
+
+                if (sortSelect == "b" || sortSelect == "B")
+                {
+                    ec2 = false;
+                    bubbleSort(array, len);//Runs the bubble sort method
+
+                }
+                else if (sortSelect == "i" || sortSelect == "I")
+                {
+                    insertionSort(array, len);//Runs the bubble sort method
+                    ec2 = false;
+                }
+                else if (sortSelect == "m" || sortSelect == "M")
+                {
+                    MergeInitialise(array, len);//Runs the bubble sort method
+                    ec2 = false;
+                }
+                else if (sortSelect == "q" || sortSelect == "Q")
+                {
+                    QuickSortInitialise(array, len);//Runs the bubble sort method
+                    ec2 = false;
+                }
+                else
+                {
+                    ec2 = true;
+                }
+
+            }
         }
 
         static string LenSelect()
@@ -271,24 +311,44 @@ namespace Assessment1
             return lenSelect;//Returns selection
         }
 
-        static void disTenth(int[] dta)
+        static void disTenth(int[] dta, int n)
         {
-            int[] newa = null;
-            int pointCounter = 1;
-            foreach (int i in dta)
+            List<int> newa = new List<int>();//Creates a list to store 
+            int pointCounter = 1;//Creates a counter
+
+            foreach (int i in dta)//Loops through list
             {
-                if (pointCounter == 10)
+                if (n == 256)//Checks the lenght of the array
                 {
-                    int value = dta[i];
-                    pointCounter = 1;
+                    if (pointCounter == 10)
+                    {
+                        int value = i;
+                        newa.Add(i);//Adds 10th value to the list
+                        pointCounter = 1;//resets counter
+
+                    }
+                    else
+                    {
+                        pointCounter++;//increments counter
+                    }
                 }
                 else
                 {
-                    pointCounter++;
+                    if (pointCounter == 50)
+                    {
+                        int value = i;
+                        newa.Add(i);//Adds 50th value to the list
+                        pointCounter = 1;
+
+                    }
+                    else
+                    {
+                        pointCounter++;
+                    }
                 }
                 
             }
-            Console.WriteLine(string.Join(" ", newa));
+            Console.WriteLine(string.Join(" ", newa));//Outputs list
 
         }
 
