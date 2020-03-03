@@ -10,7 +10,6 @@ namespace Assessment1
         static void Main(string[] args)
         {
             bool ec = true;//Used for error checking
-            int printAmount;//Stores number to choose how many elements are printed
             string[] selectedArray;
             int[] sortedArray;
             string[] Array1_256 = System.IO.File.ReadAllLines("Net_1_256.txt");
@@ -134,6 +133,20 @@ namespace Assessment1
             }
             else if (order == "d")
             {
+                for (int i = 0; i < n - 1; i++)//Loops throgh each intger in the array 
+                {
+                    for (int j = 0; j < n - 1 - i; j++)//Loops through each number before i in thr array
+                    {
+                        if (ba[j + 1] > ba[j])//Checks if j is more or less than the number to its right
+                        {
+                            int temp = ba[j];//stores j in a temp
+                            ba[j] = ba[j + 1];// swaps j and the number next to it
+                            ba[j + 1] = temp;// swaps the number next to j with j stored in temp
+
+                        }
+
+                    }
+                }
 
             }
             Console.WriteLine("This is bubble sort: ");
@@ -141,29 +154,57 @@ namespace Assessment1
 
         }
 
-        static void insertionSort(int [] ia, int n)
+        static void insertionSort(int [] ia, int n, string order)
         {
-            int pointer = 1;//sets a pointer
-            int index;//sets an index
-            while (pointer < n)//Loops through the array
+            if(order == "a")//Ascending order sort
             {
-                int temp = ia[pointer];//Temp value to hold to value in pointer
-                
-                for (index = pointer; index > 0; index--)//Loops through each value lower than the index
+                int pointer = 1;//sets a pointer
+                int index;//sets an index
+                while (pointer < n)//Loops through the array
                 {
-                    
-                    if (temp < ia[index-1])//Checks if the pointers value is less than the current index
+                    int temp = ia[pointer];//Temp value to hold to value in pointer
+
+                    for (index = pointer; index > 0; index--)//Loops through each value lower than the index
                     {
-                        ia[index] = ia[index - 1];//Moves the number one left from the index
+
+                        if (temp < ia[index - 1])//Checks if the pointers value is less than the current index
+                        {
+                            ia[index] = ia[index - 1];//Moves the number one left from the index
+                        }
+                        else
+                        {
+                            break;//leaves loop
+                        }
+
                     }
-                    else
-                    {
-                        break;//leaves loop
-                    }
-                    
+                    ia[index] = temp;//Sets the index value to the pointers value
+                    pointer++;//Increments the pointer
                 }
-                ia[index] = temp;//Sets the index value to the pointers value
-                pointer++;//Increments the pointer
+            }
+            else if(order == "d")//Sorts in descending order 
+            {
+                int pointer = 1;//sets a pointer
+                int index;//sets an index
+                while (pointer < n)//Loops through the array
+                {
+                    int temp = ia[pointer];//Temp value to hold to value in pointer
+
+                    for (index = pointer; index > 0; index--)//Loops through each value lower than the index
+                    {
+
+                        if (temp > ia[index - 1])//Checks if the pointers value is less than the current index
+                        {
+                            ia[index] = ia[index - 1];//Moves the number one left from the index
+                        }
+                        else
+                        {
+                            break;//leaves loop
+                        }
+
+                    }
+                    ia[index] = temp;//Sets the index value to the pointers value
+                    pointer++;//Increments the pointer
+                }
             }
             Console.WriteLine("This is inserstion sort: ");
             disTenth(ia, n);//Runs disTenth method
@@ -219,45 +260,79 @@ namespace Assessment1
             MergeArray(ma, temp, low, middle, high);//Merges the array
         }
 
-        static void QuickSort(int[] qa, int left, int right)
+        static void QuickSort(int[] qa, int left, int right, string choice)
         {
-            int l;//Stores a side left counter
-            int r;//Sets a side right counter
-            int pivot;//Sets a pivot point
-            int temp;//Temp to hold values
-
-            l = left;//Sets to the farmost left value
-            r = right;//Sets to the farmost right value
-
-            pivot = qa[(left + right) / 2];//Sets the pivot to a middle value
-
-            do
+            if (choice == "a")//Sorting in ascending order
             {
-                while ((qa[l] < pivot) && (l < right)) l++;//Loops through the the array from the left side
-                while ((pivot < qa[r]) && (r > left)) r--;//Loops through the the array from the right side
+                int l;//Stores a side left counter
+                int r;//Sets a side right counter
+                int pivot;//Sets a pivot point
+                int temp;//Temp to hold values
 
-                if (l <= r)
+                l = left;//Sets to the farmost left value
+                r = right;//Sets to the farmost right value
+
+                pivot = qa[(left + right) / 2];//Sets the pivot to a middle value
+
+                do
                 {
-                    temp = qa[l];//Stores the current left value in a temp
-                    qa[l] = qa[r];//Swaps the current right value with left
-                    qa[r] = temp;//Stores the temp value in the right location
-                    l++;
-                    r--;//Increments left and right counter
+                    while ((qa[l] < pivot) && (l < right)) l++;//Loops through the the array from the left side
+                    while ((pivot < qa[r]) && (r > left)) r--;//Loops through the the array from the right side
+
+                    if (l <= r)
+                    {
+                        temp = qa[l];//Stores the current left value in a temp
+                        qa[l] = qa[r];//Swaps the current right value with left
+                        qa[r] = temp;//Stores the temp value in the right location
+                        l++;
+                        r--;//Increments left and right counter
 
 
-                }
-            } while (l <= r);
+                    }
+                } while (l <= r);
 
-            if (left < r) QuickSort(qa, left, r);//Sorts if the left value is lower than the right counter
-            if (l < right) QuickSort(qa, l, right);//Sorts if the left counter is lower than the right value
+                if (left < r) QuickSort(qa, left, r, choice);//Sorts if the left value is lower than the right counter
+                if (l < right) QuickSort(qa, l, right, choice);//Sorts if the left counter is lower than the right value
+
+            }
+            else if(choice == "d")//Sorting in decsending order
+            {
+                int l;//Stores a side left counter
+                int r;//Sets a side right counter
+                int pivot;//Sets a pivot point
+                int temp;//Temp to hold values
+
+                l = left;//Sets to the farmost left value
+                r = right;//Sets to the farmost right value
+
+                pivot = qa[(left + right) / 2];//Sets the pivot to a middle value
+
+                do
+                {
+                    while ((qa[l] > pivot) && (l < right)) l++;//Loops through the the array from the left side
+                    while ((pivot > qa[r]) && (r > left)) r--;//Loops through the the array from the right side
+
+                    if (l <= r)
+                    {
+                        temp = qa[l];//Stores the current left value in a temp
+                        qa[l] = qa[r];//Swaps the current right value with left
+                        qa[r] = temp;//Stores the temp value in the right location
+                        l++;
+                        r--;//Increments left and right counter
 
 
+                    }
+                } while (l <= r);
+
+                if (left < r) QuickSort(qa, left, r, choice);//Sorts if the left value is lower than the right counter
+                if (l < right) QuickSort(qa, l, right, choice);//Sorts if the left counter is lower than the right value
+            }
 
         }
 
-        static void QuickSortInitialise(int[] qa, int n)
+        static void QuickSortInitialise(int[] qa, int n,string choice)
         {
-            QuickSort(qa, 0, n - 1);//Runs a quick sort
+            QuickSort(qa, 0, n - 1, choice);//Runs a quick sort
             Console.WriteLine("This is Quick sort: ");
             disTenth(qa, n);//Runs disTenth method
         }
@@ -303,11 +378,12 @@ namespace Assessment1
                     if (AorD == "a" || AorD == "A")
                     {
                         ec2 = false;
-                        insertionSort(array, len);//Runs the bubble sort method
+                        insertionSort(array, len, "a");//Runs the bubble sort method
                     }
                     else if (AorD == "d" || AorD == "D")
                     {
-
+                        ec2 = false;
+                        insertionSort(array, len, "d");//Runs the bubble sort method
                     }
                     
                 }
@@ -329,11 +405,12 @@ namespace Assessment1
                     if (AorD == "a" || AorD == "A")
                     {
                         ec2 = false;
-                        QuickSortInitialise(array, len);//Runs the bubble sort method
+                        QuickSortInitialise(array, len, "a");//Runs the bubble sort method
                     }
                     else if (AorD == "d" || AorD == "D")
                     {
-
+                        ec2 = false;
+                        QuickSortInitialise(array, len, "d");//Runs the bubble sort method
                     }
                     
                 }
