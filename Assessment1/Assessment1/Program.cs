@@ -112,7 +112,7 @@ namespace Assessment1
 
         static void bubbleSort(int[] ba, int n, string order)
         {
-            if (order == "a")
+            if (order == "a")//Sorting in ascending order
             {
 
                 for (int i = 0; i < n - 1; i++)//Loops throgh each intger in the array 
@@ -131,7 +131,7 @@ namespace Assessment1
                 }
                
             }
-            else if (order == "d")
+            else if (order == "d")//Sorting in decsending order
             {
                 for (int i = 0; i < n - 1; i++)//Loops throgh each intger in the array 
                 {
@@ -210,38 +210,63 @@ namespace Assessment1
             disTenth(ia, n);//Runs disTenth method
         }
 
-        static void MergeInitialise(int[] ma, int n)
+        static void MergeInitialise(int[] ma, int n, string choice)
         {
             int[] temp = new int[n];//Sets temp to the value of n
-            MergeRecurs(ma, temp, 0, n - 1);//Runs a recursive sort algorithm
+            MergeRecurs(ma, temp, 0, n - 1, choice);//Runs a recursive sort algorithm
             Console.WriteLine("This is Merge sort: ");
             disTenth(ma, n);//Runs disTenth method
         }
 
-        static void MergeArray(int[] ma, int[] temp, int low, int middle, int high)
+        static void MergeArray(int[] ma, int[] temp, int low, int middle, int high, string choice)
         {
-            int resIn = low;//Stores result index
-            int tempIn = low;//Stores temporary index
-            int desIn = middle;//Stores destination index
-
-            while (tempIn < middle && desIn <= high)//Merges smaller values if the list isn't empty
+            if (choice == "a")//Sorting in ascending order
             {
-                if (ma[desIn] < temp[tempIn])
+                int resIn = low;//Stores result index
+                int tempIn = low;//Stores temporary index
+                int desIn = middle;//Stores destination index
+
+                while (tempIn < middle && desIn <= high)//Merges smaller values if the list isn't empty
                 {
-                    ma[resIn++] = ma[desIn++];//Moves smaller values
+                    if (ma[desIn] < temp[tempIn])
+                    {
+                        ma[resIn++] = ma[desIn++];//Moves smaller values
+                    }
+                    else
+                    {
+                        ma[resIn++] = temp[tempIn++];//Moves smaller values to temp
+                    }
                 }
-                else
+                while (tempIn < middle)
                 {
-                    ma[resIn++] = temp[tempIn++];//Moves smaller values to temp
+                    ma[resIn++] = temp[tempIn++];//Sorts values still left in temp
                 }
             }
-            while( tempIn < middle)
+            else if (choice == "d")//Sorting in decsending order
             {
-                ma[resIn++] = temp[tempIn++];//Sorts values still left in temp
+                int resIn = low;//Stores result index
+                int tempIn = low;//Stores temporary index
+                int desIn = middle;//Stores destination index
+
+                while (tempIn < middle && desIn <= high)//Merges smaller values if the list isn't empty
+                {
+                    if (ma[desIn] > temp[tempIn])
+                    {
+                        ma[resIn++] = ma[desIn++];//Moves smaller values
+                    }
+                    else
+                    {
+                        ma[resIn++] = temp[tempIn++];//Moves smaller values to temp
+                    }
+                }
+                while (tempIn < middle)
+                {
+                    ma[resIn++] = temp[tempIn++];//Sorts values still left in temp
+                }
             }
         }
 
-        static void MergeRecurs(int[] ma, int[]temp, int low, int high)
+        static void MergeRecurs(int[] ma, int[]temp, int low, int high, string choice)
         {
             int n = high - low + 1;//Finds the middle value in the array
             int middle = low + n / 2;//Finds middle value for split arrays
@@ -255,9 +280,9 @@ namespace Assessment1
             {
                 temp[i] = ma[i];//Sets lower half of data into a temp array
             }
-            MergeRecurs(temp, ma, low, middle - 1 );//Sorts the lower array
-            MergeRecurs(ma, temp, middle, high);//Sorts the higher array
-            MergeArray(ma, temp, low, middle, high);//Merges the array
+            MergeRecurs(temp, ma, low, middle - 1, choice );//Sorts the lower array
+            MergeRecurs(ma, temp, middle, high, choice);//Sorts the higher array
+            MergeArray(ma, temp, low, middle, high, choice);//Merges the array
         }
 
         static void QuickSort(int[] qa, int left, int right, string choice)
@@ -392,11 +417,12 @@ namespace Assessment1
                     if (AorD == "a" || AorD == "A")
                     {
                         ec2 = false;
-                        MergeInitialise(array, len);//Runs the bubble sort method
+                        MergeInitialise(array, len, "a");//Runs the bubble sort method
                     }
                     else if (AorD == "d" || AorD == "D")
                     {
-
+                        ec2 = false;
+                        MergeInitialise(array, len, "d");//Runs the bubble sort method
                     }
 
                 }
