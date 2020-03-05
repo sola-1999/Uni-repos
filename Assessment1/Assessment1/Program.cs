@@ -407,7 +407,7 @@ namespace Assessment1
                 index = (int)(low + (((int)(high - low) / (search[high] - search[low])) * (key - search[low])));
                 if (search[index] == key)
                 {
-                    Console.WriteLine("value {0} found in location {1} ", key, index);//Prints the value and its location
+                    Console.WriteLine("value {0} found in location {1} ",key,index);//Prints the value and its location
                     
                 }
                 else
@@ -416,9 +416,10 @@ namespace Assessment1
                         low = index + 1;
                     else
                         high = index - 1;
+                    InterpolationSearch(search, high, key, low);
                 }
 
-                InterpolationSearch(search, high, key, low);
+                
             }
             if (index == -1)
             {
