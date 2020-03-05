@@ -368,23 +368,38 @@ namespace Assessment1
             return qa;
         }
 
-        static int BinarySearch(int key, int[] search, int low, int high)
+        static void BinarySearch(int key, int[] search, int low, int high)
         {
-            if (low > high) return -1;
-            int mid = (low + high) / 2;
-            if(key == search[mid])
+            if (low > high)//Checks if the value isnt found 
             {
-                return mid;
-            }
-            else if(key < search[mid])
-            {
-                return BinarySearch(key, search, low, mid - 1);
+                    
+                int closest = comp(key, low, high, search);//Finds the closest value
+
+                Console.WriteLine("Value not found, the nearst value is: {0}", closest);//Prints closest value
 
             }
             else
             {
-                return BinarySearch(key, search, mid + 1, high);
+                int mid = (low + high) / 2;
+                if (key == search[mid])//Checks if the value has been found
+                {
+                    Console.WriteLine("value {0} found in location {1} ", key, mid);//Prints the value and its location
+                }
+                else if (key < search[mid])
+                {
+                    BinarySearch(key, search, low, mid - 1);
+
+                }
+                else
+                {
+                    BinarySearch(key, search, mid + 1, high);
+                }
             }
+        }
+        
+        static void InterpolationSearch(int[] search, int len, int key, int index)
+        {
+
         }
 
         static int[] convertArray(string[] atc)
@@ -403,6 +418,7 @@ namespace Assessment1
             bool ec2 = true;//Used for error checking
             while (ec2 == true)
             {
+                ec2 = false;
                 Console.WriteLine("Choose a sort or algorithm (b = Bubble sort, i = Insertion sort, m = Merge sort, q = Quick sort, s = search algorithms):  ");
                 string sortSelect = Console.ReadLine();
                 if (sortSelect == "s" || sortSelect == "S") ChooseSearch(array, len);
@@ -487,16 +503,16 @@ namespace Assessment1
             string searchstr = Console.ReadLine();
             int searchNum = Convert.ToInt32(searchstr);
             bool ec3 = true;
-            int output;
 
             while (ec3 == true)
             {
 
                 if(choice == "b" || choice == "B")
                 {
+                    ec3 = false;
                     searchArray = QuickSortReturn(searchArray, len);
-                    output = BinarySearch(searchNum, searchArray, 0, len);
-                    Console.WriteLine(output);
+                    BinarySearch(searchNum, searchArray, 0, len);
+                   
                 }
 
             }
@@ -551,5 +567,46 @@ namespace Assessment1
 
         }
 
+
+        static int comp(int key, int comp1, int comp2, int[] Compare)
+        {
+            if (comp1 < 0)
+            {
+                return Compare[comp2];
+            }
+            if(comp2 < 0)
+            {
+               
+                return Compare[comp1];
+            }
+            comp1 = Compare[comp1];
+            comp2 = Compare[comp2];
+            int Newcomp1;
+            int Newcomp2;
+            if (comp1 > key)
+            {
+                  Newcomp1 = comp1 - key;
+            }
+            else
+            {
+                 Newcomp1 = key - comp1;
+            }
+            if (comp2 > key)
+            {
+                Newcomp2 = comp2 - key;
+            }
+            else
+            {
+                Newcomp2 = key - comp2;
+            }
+            if (Newcomp1 > Newcomp2)
+            {
+                return comp2;
+            }
+            else
+            {
+                return comp1;
+            }
+        }
     }
 }
