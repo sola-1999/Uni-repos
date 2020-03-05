@@ -397,41 +397,40 @@ namespace Assessment1
             }
         }
         
-        static void InterpolationSearch(int[] search, int len, int key)
+        static void InterpolationSearch(int[] search, int high, int key, int low)
         {
-
-            int lo = 0;
-            int mid = -1;
-            int hi = len - 1;
+            
             int index = -1;
 
-            while (lo <= hi)
+            if (low <= high)
             {
-                mid = (int)(lo + (((double)(hi - lo) / (search[hi] - search[lo])) * (key - search[lo])));
-
-                if (search[mid] == key)
+                index = (int)(low + (((int)(high - low) / (search[high] - search[low])) * (key - search[low])));
+                if (search[index] == key)
                 {
-                    index = mid;
-                    break;
+                    Console.WriteLine("value {0} found in location {1} ", key, index);//Prints the value and its location
+                    
                 }
                 else
                 {
-                    if (search[mid] < key)
-                        lo = mid + 1;
+                    if (search[index] < key)
+                        low = index + 1;
                     else
-                        hi = mid - 1;
+                        high = index - 1;
                 }
-            }
 
+                InterpolationSearch(search, high, key, low);
+            }
             if (index == -1)
             {
-              int closest = comp(key, lo, hi, search);//Finds the closest value
-
-            Console.WriteLine("Value not found, the nearst value is: {0}", closest);//Prints closest value
-            }
-            else
-            {
-              Console.WriteLine("value {0} found in location {1} ", key, mid);//Prints the value and its location
+                int closest = comp(key, low, high, search);//Finds the closest value
+                if (closest == search[low])
+                {
+                    Console.WriteLine("Value not found, the nearst value is: {0} in location {1}", closest, low);//Prints closest value
+                }
+                else if(closest == search[high])
+                {
+                    Console.WriteLine("Value not found, the nearst value is: {0} in location {1}", closest, high);//Prints closest value
+                }
             }
         }
 
@@ -551,7 +550,8 @@ namespace Assessment1
                 {
                     ec3 = false;
                     searchArray = QuickSortReturn(searchArray, len);
-                    InterpolationSearch(searchArray, searchNum, len);
+                    InterpolationSearch(searchArray, len - 1, searchNum, 0);
+                    
                 }
 
             }
