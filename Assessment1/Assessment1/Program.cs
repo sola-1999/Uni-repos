@@ -397,9 +397,42 @@ namespace Assessment1
             }
         }
         
-        static void InterpolationSearch(int[] search, int len, int key, int index)
+        static void InterpolationSearch(int[] search, int len, int key)
         {
+            
+            int lo = 0;
+            int mid = -1;
+            int hi = len - 1;
+            int index = -1;
 
+            while (lo <= hi)
+            {
+                mid = (int)(lo + (((double)(hi - lo) / (search[hi] - search[lo])) * (key - search[lo])));
+
+                if (search[mid] == key)
+                {
+                    index = mid;
+                    break;
+                }
+                else
+                {
+                    if (search[mid] < key)
+                        lo = mid + 1;
+                    else
+                        hi = mid - 1;
+                }
+            }
+
+            if (index == -1)
+            {
+                int closest = comp(key, lo, hi, search);//Finds the closest value
+
+                Console.WriteLine("Value not found, the nearst value is: {0}", closest);//Prints closest value
+            }
+            else
+            {
+                Console.WriteLine("value {0} found in location {1} ", key, mid);//Prints the value and its location
+            }
         }
 
         static int[] convertArray(string[] atc)
@@ -513,6 +546,12 @@ namespace Assessment1
                     searchArray = QuickSortReturn(searchArray, len);
                     BinarySearch(searchNum, searchArray, 0, len);
                    
+                }
+                else if(choice == "i" || choice == "I")
+                {
+                    ec3 = false;
+                    searchArray = QuickSortReturn(searchArray, len);
+                    InterpolationSearch(searchArray, searchNum, len);
                 }
 
             }
