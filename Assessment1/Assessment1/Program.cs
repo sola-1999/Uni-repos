@@ -399,7 +399,7 @@ namespace Assessment1
         
         static void InterpolationSearch(int[] search, int len, int key)
         {
-            
+
             int lo = 0;
             int mid = -1;
             int hi = len - 1;
@@ -425,13 +425,13 @@ namespace Assessment1
 
             if (index == -1)
             {
-                int closest = comp(key, lo, hi, search);//Finds the closest value
+              int closest = comp(key, lo, hi, search);//Finds the closest value
 
-                Console.WriteLine("Value not found, the nearst value is: {0}", closest);//Prints closest value
+            Console.WriteLine("Value not found, the nearst value is: {0}", closest);//Prints closest value
             }
             else
             {
-                Console.WriteLine("value {0} found in location {1} ", key, mid);//Prints the value and its location
+              Console.WriteLine("value {0} found in location {1} ", key, mid);//Prints the value and its location
             }
         }
 
