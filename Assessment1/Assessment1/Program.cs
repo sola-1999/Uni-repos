@@ -361,8 +361,31 @@ namespace Assessment1
             Console.WriteLine("This is Quick sort: ");
             disTenth(qa, n);//Runs disTenth method
         }
+        static int[] QuickSortReturn(int[] qa, int n)//A sort array used to return for searching
+        {
+            string choice = "a";
+            QuickSort(qa, 0, n - 1, choice);//Runs a quick sort
+            return qa;
+        }
 
+        static int BinarySearch(int key, int[] search, int low, int high)
+        {
+            if (low > high) return -1;
+            int mid = (low + high) / 2;
+            if(key == search[mid])
+            {
+                return mid;
+            }
+            else if(key < search[mid])
+            {
+                return BinarySearch(key, search, low, mid - 1);
 
+            }
+            else
+            {
+                return BinarySearch(key, search, mid + 1, high);
+            }
+        }
 
         static int[] convertArray(string[] atc)
         {
@@ -380,73 +403,104 @@ namespace Assessment1
             bool ec2 = true;//Used for error checking
             while (ec2 == true)
             {
-                Console.WriteLine("Choose a sort algorithm (b = Bubble, i = insertion, m = Merge, q = Quick);  ");
+                Console.WriteLine("Choose a sort or algorithm (b = Bubble sort, i = Insertion sort, m = Merge sort, q = Quick sort, s = search algorithms):  ");
                 string sortSelect = Console.ReadLine();
-                Console.WriteLine("Choose to have the list acending or decending (a = ascending, d = descending): ");
-                string AorD = Console.ReadLine();
+                if (sortSelect == "s" || sortSelect == "S") ChooseSearch(array, len);
 
-                if (sortSelect == "b" || sortSelect == "B")
-                {
-                    if (AorD == "a" || AorD == "A")
-                    {
-                        ec2 = false;
-                        bubbleSort(array, len, "a");//Runs the bubble sort method
-                    }
-                    else if(AorD == "d" || AorD == "D")
-                    {
-                        ec2 = false;
-                        bubbleSort(array, len, "d");//Runs the bubble sort method
-                    }
-                }
-                else if (sortSelect == "i" || sortSelect == "I")
-                {
-                    if (AorD == "a" || AorD == "A")
-                    {
-                        ec2 = false;
-                        insertionSort(array, len, "a");//Runs the bubble sort method
-                    }
-                    else if (AorD == "d" || AorD == "D")
-                    {
-                        ec2 = false;
-                        insertionSort(array, len, "d");//Runs the bubble sort method
-                    }
-                    
-                }
-                else if (sortSelect == "m" || sortSelect == "M")
-                {
-                    if (AorD == "a" || AorD == "A")
-                    {
-                        ec2 = false;
-                        MergeInitialise(array, len, "a");//Runs the bubble sort method
-                    }
-                    else if (AorD == "d" || AorD == "D")
-                    {
-                        ec2 = false;
-                        MergeInitialise(array, len, "d");//Runs the bubble sort method
-                    }
-
-                }
-                else if (sortSelect == "q" || sortSelect == "Q")
-                {
-                    if (AorD == "a" || AorD == "A")
-                    {
-                        ec2 = false;
-                        QuickSortInitialise(array, len, "a");//Runs the bubble sort method
-                    }
-                    else if (AorD == "d" || AorD == "D")
-                    {
-                        ec2 = false;
-                        QuickSortInitialise(array, len, "d");//Runs the bubble sort method
-                    }
-                    
-                }
                 else
                 {
-                    ec2 = true;
-                    Console.WriteLine("Invalid input.");
+                    Console.WriteLine("Choose to have the list acending or decending (a = ascending, d = descending)- only applies to sort algorithms: ");
+                    string AorD = Console.ReadLine();
+
+                    if (sortSelect == "b" || sortSelect == "B")
+                    {
+                        if (AorD == "a" || AorD == "A")
+                        {
+                            ec2 = false;
+                            bubbleSort(array, len, "a");//Runs the bubble sort method
+                        }
+                        else if (AorD == "d" || AorD == "D")
+                        {
+                            ec2 = false;
+                            bubbleSort(array, len, "d");//Runs the bubble sort method
+                        }
+                    }
+                    else if (sortSelect == "i" || sortSelect == "I")
+                    {
+                        if (AorD == "a" || AorD == "A")
+                        {
+                            ec2 = false;
+                            insertionSort(array, len, "a");//Runs the bubble sort method
+                        }
+                        else if (AorD == "d" || AorD == "D")
+                        {
+                            ec2 = false;
+                            insertionSort(array, len, "d");//Runs the bubble sort method
+                        }
+
+                    }
+                    else if (sortSelect == "m" || sortSelect == "M")
+                    {
+                        if (AorD == "a" || AorD == "A")
+                        {
+                            ec2 = false;
+                            MergeInitialise(array, len, "a");//Runs the bubble sort method
+                        }
+                        else if (AorD == "d" || AorD == "D")
+                        {
+                            ec2 = false;
+                            MergeInitialise(array, len, "d");//Runs the bubble sort method
+                        }
+
+                    }
+                    else if (sortSelect == "q" || sortSelect == "Q")
+                    {
+                        if (AorD == "a" || AorD == "A")
+                        {
+                            ec2 = false;
+                            QuickSortInitialise(array, len, "a");//Runs the bubble sort method
+                        }
+                        else if (AorD == "d" || AorD == "D")
+                        {
+                            ec2 = false;
+                            QuickSortInitialise(array, len, "d");//Runs the bubble sort method
+                        }
+
+                    }
+
+                    else
+                    {
+                        ec2 = true;
+                        Console.WriteLine("Invalid input.");
+                    }
+
                 }
 
             }
+        }
+
+        static void ChooseSearch(int[] searchArray, int len)
+        {
+            Console.WriteLine("Choose a search algorithm ( b = Binary search, i = Interpolation search): ");
+            string choice = Console.ReadLine();
+            Console.WriteLine("Enter the number you would like to search: ");
+            string searchstr = Console.ReadLine();
+            int searchNum = Convert.ToInt32(searchstr);
+            bool ec3 = true;
+            int output;
+
+            while (ec3 == true)
+            {
+
+                if(choice == "b" || choice == "B")
+                {
+                    searchArray = QuickSortReturn(searchArray, len);
+                    output = BinarySearch(searchNum, searchArray, 0, len);
+                    Console.WriteLine(output);
+                }
+
+            }
+
         }
 
         static string LenSelect()
