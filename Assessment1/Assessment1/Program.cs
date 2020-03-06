@@ -10,8 +10,8 @@ namespace Assessment1
         static void Main(string[] args)
         {
             bool ec = true;//Used for error checking
-            string[] selectedArray;
-            int[] sortedArray;
+            string[] selectedArray;//Stores selected array
+            int[] sortedArray;//Stores sorted array
             string[] Array1_256 = System.IO.File.ReadAllLines("Net_1_256.txt");
             string[] Array2_256 = System.IO.File.ReadAllLines("Net_2_256.txt");
             string[] Array3_256 = System.IO.File.ReadAllLines("Net_3_256.txt");
@@ -22,7 +22,7 @@ namespace Assessment1
 
             while (ec == true)
             {
-                Console.WriteLine("Type the number of the array you want to sort and search (1, 2, 3): ");
+                Console.WriteLine("Type the number of the array you want to sort and search (1, 2, 3, 4 = merge): ");
                 string numSelect = Console.ReadLine();//Takes array selection from the user
 
                 if (numSelect == "1")//Determines if the user selected array1
@@ -99,6 +99,35 @@ namespace Assessment1
                         ec = true;
                     }
 
+
+                }
+                else if (numSelect == "4")//Determines if the user selected to merge all of the arrays
+                {
+                    
+                    string selectedLen = LenSelect();
+                    if (selectedLen == "256")
+                    {
+                        
+
+                        selectedArray = merge3(Array1_256,Array2_256,Array3_256);//Merges arrays
+
+                        sortedArray = convertArray(selectedArray);
+                        chooseSort(sortedArray);
+                        ec = false;
+                    }
+                    else if (selectedLen == "2048")
+                    {
+
+                        selectedArray = merge3(Array1_2048, Array2_2048, Array3_2048);//Merges arrays
+
+                        sortedArray = convertArray(selectedArray);
+                        chooseSort(sortedArray);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input");
+                        ec = true;
+                    }
                 }
                 else
                 {
@@ -370,12 +399,28 @@ namespace Assessment1
 
         static void BinarySearch(int key, int[] search, int low, int high)
         {
-            if (low > high)//Checks if the value isnt found 
+            if(key > search[high])//Checks if key is outside the bounds of the array
+            {
+                Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", search[high], high);//Prints closest value 
+            }
+            else if (key < 0)//Checks if key is outside the bounds of the array
+            {
+                Console.WriteLine("Sub zero values not accepted, the first value in this array is {0}", search[low]);//Prints closest value
+            }
+            else if (low > high)//Checks if the value isnt found 
             {
                     
                 int closest = comp(key, low, high, search);//Finds the closest value
 
-                Console.WriteLine("Value not found, the nearst value is: {0}", closest);//Prints closest value
+                if (closest == search[low])
+                {
+                    Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", closest, low);//Prints closest value
+                }
+                else if (closest == search[high])
+                {
+                    Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", closest, high);//Prints closest value
+                }
+
 
             }
             else
@@ -384,15 +429,23 @@ namespace Assessment1
                 if (key == search[mid])//Checks if the value has been found
                 {
                     Console.WriteLine("value {0} found in location {1} ", key, mid);//Prints the value and its location
+                    if (search[mid - 1] == key)
+                    {
+                       BinarySearch(key, search, low, mid - 1);//Checks for more of the same value in lower sub array
+                    }
+                    else
+                    {
+                        BinarySearch(key, search, mid + 1, high);//Checks for more of the same value in higher sub array
+                    }
                 }
                 else if (key < search[mid])
                 {
-                    BinarySearch(key, search, low, mid - 1);
+                    BinarySearch(key, search, low, mid - 1);//Searches for value in lower sub array
 
                 }
                 else
                 {
-                    BinarySearch(key, search, mid + 1, high);
+                    BinarySearch(key, search, mid + 1, high);//Searches fro value in higher sub array
                 }
             }
         }
@@ -401,36 +454,56 @@ namespace Assessment1
         {
             
             int index = -1;
-
-            if (low <= high)
+            if (key > search[high])//Checks if key is outside the bounds of the array
             {
-                index = (int)(low + (((int)(high - low) / (search[high] - search[low])) * (key - search[low])));
-                if (search[index] == key)
-                {
-                    Console.WriteLine("value {0} found in location {1} ",key,index);//Prints the value and its location
-                    
-                }
-                else
-                {
-                    if (search[index] < key)
-                        low = index + 1;
-                    else
-                        high = index - 1;
-                    InterpolationSearch(search, high, key, low);
-                }
-
-                
+                Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", search[high], high);//Prints closest value
             }
-            if (index == -1)
+            else if(key < 0)//Checks if key is outside the bounds of the array
             {
-                int closest = comp(key, low, high, search);//Finds the closest value
-                if (closest == search[low])
+                Console.WriteLine("Sub zero values not accepted, the first value in this array is {0}", search[low]);//Prints closest value
+            }
+            else
+            {
+                if (low <= high)
                 {
-                    Console.WriteLine("Value not found, the nearst value is: {0} in location {1}", closest, low);//Prints closest value
+                    index = (int)(low + (((int)(high - low) / (search[high] - search[low])) * (key - search[low])));
+                    if (search[index] == key)
+                    {
+                        Console.WriteLine("value {0} found in location {1} ", key, index);//Prints the value and its location
+                        if (search[index + 1] == key)
+                        {
+
+                            InterpolationSearch(search, high, key, index + 1);//Searches for value in lower sub array
+                        }
+                        else
+                        {
+                            InterpolationSearch(search, index - 1, key, low);//Searches for value in higher sub array
+                        }
+
+
+                    }
+                    else
+                    {
+                        if (search[index] < key)
+                            low = index + 1;//Moves index
+                        else
+                            high = index - 1;
+                        InterpolationSearch(search, high, key, low);//Searches for value in higher sub array
+                    }
+
+
                 }
-                else if(closest == search[high])
+                if (index == -1)//Checks if value has been found
                 {
-                    Console.WriteLine("Value not found, the nearst value is: {0} in location {1}", closest, high);//Prints closest value
+                    int closest = comp(key, low, high, search);//Finds the closest value
+                    if (closest == search[low])
+                    {
+                        Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", closest, low);//Prints closest value
+                    }
+                    else if (closest == search[high])
+                    {
+                        Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", closest, high);//Prints closest value
+                    }
                 }
             }
         }
@@ -453,13 +526,13 @@ namespace Assessment1
             {
                 ec2 = false;
                 Console.WriteLine("Choose a sort or algorithm (b = Bubble sort, i = Insertion sort, m = Merge sort, q = Quick sort, s = search algorithms):  ");
-                string sortSelect = Console.ReadLine();
-                if (sortSelect == "s" || sortSelect == "S") ChooseSearch(array, len);
+                string sortSelect = Console.ReadLine();//Asks user to choose a sort
+                if (sortSelect == "s" || sortSelect == "S") ChooseSearch(array, len);//Runs search methods
 
                 else
                 {
                     Console.WriteLine("Choose to have the list acending or decending (a = ascending, d = descending)- only applies to sort algorithms: ");
-                    string AorD = Console.ReadLine();
+                    string AorD = Console.ReadLine();//Ask user to choose how to display the array
 
                     if (sortSelect == "b" || sortSelect == "B")
                     {
@@ -531,11 +604,11 @@ namespace Assessment1
         static void ChooseSearch(int[] searchArray, int len)
         {
             Console.WriteLine("Choose a search algorithm ( b = Binary search, i = Interpolation search): ");
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine();//Asks user to choose a search algorithm
             Console.WriteLine("Enter the number you would like to search: ");
-            string searchstr = Console.ReadLine();
-            int searchNum = Convert.ToInt32(searchstr);
-            bool ec3 = true;
+            string searchstr = Console.ReadLine();//Asks user to choose a number to search
+            int searchNum = Convert.ToInt32(searchstr);//Asks user to choose a number to search
+            bool ec3 = true;//Used for error checking
 
             while (ec3 == true)
             {
@@ -543,15 +616,15 @@ namespace Assessment1
                 if(choice == "b" || choice == "B")
                 {
                     ec3 = false;
-                    searchArray = QuickSortReturn(searchArray, len);
-                    BinarySearch(searchNum, searchArray, 0, len);
+                    searchArray = QuickSortReturn(searchArray, len);//Sorts array
+                    BinarySearch(searchNum, searchArray, 0, len);//Runs binary search
                    
                 }
                 else if(choice == "i" || choice == "I")
                 {
                     ec3 = false;
-                    searchArray = QuickSortReturn(searchArray, len);
-                    InterpolationSearch(searchArray, len - 1, searchNum, 0);
+                    searchArray = QuickSortReturn(searchArray, len);//Sorts array
+                    InterpolationSearch(searchArray, len - 1, searchNum, 0);//Runs interpolation search
                     
                 }
 
@@ -570,6 +643,8 @@ namespace Assessment1
         {
             List<int> newa = new List<int>();//Creates a list to store 
             int pointCounter = 1;//Creates a counter
+            
+            
 
             foreach (int i in dta)//Loops through list
             {
@@ -610,27 +685,30 @@ namespace Assessment1
 
         static int comp(int key, int comp1, int comp2, int[] Compare)
         {
-            if (comp1 < 0)
+            if (comp1 < 0)//Checks if value is outside the bounds of the array
             {
                 return Compare[comp2];
             }
-            if(comp2 < 0)
+            if(comp2 < 0)//Checks if value is outside the bounds of the array
             {
                
                 return Compare[comp1];
             }
+
             comp1 = Compare[comp1];
-            comp2 = Compare[comp2];
+            comp2 = Compare[comp2];//Grabs the values from the array for each nuner
             int Newcomp1;
             int Newcomp2;
             if (comp1 > key)
             {
-                  Newcomp1 = comp1 - key;
+                  Newcomp1 = comp1 - key;//Get the value diiference between the value and key
             }
             else
             {
-                 Newcomp1 = key - comp1;
+                 Newcomp1 = key - comp1;//Get the value diiference between the value and key
             }
+
+
             if (comp2 > key)
             {
                 Newcomp2 = comp2 - key;
@@ -639,7 +717,9 @@ namespace Assessment1
             {
                 Newcomp2 = key - comp2;
             }
-            if (Newcomp1 > Newcomp2)
+
+
+            if (Newcomp1 > Newcomp2)//Check to see which value is closer to the key
             {
                 return comp2;
             }
@@ -647,6 +727,17 @@ namespace Assessment1
             {
                 return comp1;
             }
+        }
+
+        static string[] merge3(string[] a1, string[] a2, string[] a3)
+        {
+            List<string> merge = new List<string>();//Creates a list to store arrays
+            merge.AddRange(a1);
+            merge.AddRange(a2);
+            merge.AddRange(a3);//Adds arrays to the list
+            string[] finalMerge = merge.ToArray();//Coverts list to array
+            
+            return finalMerge;
         }
     }
 }
