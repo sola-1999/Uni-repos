@@ -14,8 +14,7 @@
         "outputPath": "C:\\Users\\maxja\\Source\\Repos\\Uni-repos\\Assessment1\\Assessment1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\maxja\\AppData\\Roaming\\NuGet\\NuGet.Config",

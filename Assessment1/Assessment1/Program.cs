@@ -7,6 +7,8 @@ namespace Assessment1
 {
     class Program
     {
+        static int counter;//Used as a counter to track operations
+
         static void Main(string[] args)
         {
             bool ec = true;//Used for error checking
@@ -18,6 +20,7 @@ namespace Assessment1
             string[] Array1_2048 = System.IO.File.ReadAllLines("Net_1_2048.txt");
             string[] Array2_2048 = System.IO.File.ReadAllLines("Net_2_2048.txt");
             string[] Array3_2048 = System.IO.File.ReadAllLines("Net_3_2048.txt");//Fetches files from the debug folder
+            
 
 
             while (ec == true)
@@ -143,11 +146,13 @@ namespace Assessment1
         {
             if (order == "a")//Sorting in ascending order
             {
-
+                
                 for (int i = 0; i < n - 1; i++)//Loops throgh each intger in the array 
                 {
+                    
                     for (int j = 0; j < n - 1 - i; j++)//Loops through each number before i in thr array
                     {
+                        counter++;
                         if (ba[j + 1] < ba[j])//Checks if j is more or less than the number to its right
                         {
                             int temp = ba[j];//stores j in a temp
@@ -162,10 +167,13 @@ namespace Assessment1
             }
             else if (order == "d")//Sorting in decsending order
             {
+                
                 for (int i = 0; i < n - 1; i++)//Loops throgh each intger in the array 
                 {
+                    
                     for (int j = 0; j < n - 1 - i; j++)//Loops through each number before i in thr array
                     {
+                        counter++;
                         if (ba[j + 1] > ba[j])//Checks if j is more or less than the number to its right
                         {
                             int temp = ba[j];//stores j in a temp
@@ -195,7 +203,7 @@ namespace Assessment1
 
                     for (index = pointer; index > 0; index--)//Loops through each value lower than the index
                     {
-
+                        counter++;
                         if (temp < ia[index - 1])//Checks if the pointers value is less than the current index
                         {
                             ia[index] = ia[index - 1];//Moves the number one left from the index
@@ -220,7 +228,7 @@ namespace Assessment1
 
                     for (index = pointer; index > 0; index--)//Loops through each value lower than the index
                     {
-
+                        counter++;
                         if (temp > ia[index - 1])//Checks if the pointers value is less than the current index
                         {
                             ia[index] = ia[index - 1];//Moves the number one left from the index
@@ -257,6 +265,7 @@ namespace Assessment1
 
                 while (tempIn < middle && desIn <= high)//Merges smaller values if the list isn't empty
                 {
+                    counter++;
                     if (ma[desIn] < temp[tempIn])
                     {
                         ma[resIn++] = ma[desIn++];//Moves smaller values
@@ -268,6 +277,7 @@ namespace Assessment1
                 }
                 while (tempIn < middle)
                 {
+                    counter++;
                     ma[resIn++] = temp[tempIn++];//Sorts values still left in temp
                 }
             }
@@ -279,6 +289,7 @@ namespace Assessment1
 
                 while (tempIn < middle && desIn <= high)//Merges smaller values if the list isn't empty
                 {
+                    counter++;
                     if (ma[desIn] > temp[tempIn])
                     {
                         ma[resIn++] = ma[desIn++];//Moves smaller values
@@ -290,6 +301,7 @@ namespace Assessment1
                 }
                 while (tempIn < middle)
                 {
+                    counter++;
                     ma[resIn++] = temp[tempIn++];//Sorts values still left in temp
                 }
             }
@@ -307,6 +319,7 @@ namespace Assessment1
             }
             for (i = low; i < middle; i++)
             {
+                counter++;
                 temp[i] = ma[i];//Sets lower half of data into a temp array
             }
             MergeRecurs(temp, ma, low, middle - 1, choice );//Sorts the lower array
@@ -330,6 +343,7 @@ namespace Assessment1
 
                 do
                 {
+                    counter++;
                     while ((qa[l] < pivot) && (l < right)) l++;//Loops through the the array from the left side
                     while ((pivot < qa[r]) && (r > left)) r--;//Loops through the the array from the right side
 
@@ -363,6 +377,7 @@ namespace Assessment1
 
                 do
                 {
+                    counter++;
                     while ((qa[l] > pivot) && (l < right)) l++;//Loops through the the array from the left side
                     while ((pivot > qa[r]) && (r > left)) r--;//Loops through the the array from the right side
 
@@ -399,13 +414,16 @@ namespace Assessment1
 
         static void BinarySearch(int key, int[] search, int low, int high)
         {
+            counter++;
             if(key > search[high])//Checks if key is outside the bounds of the array
             {
-                Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", search[high], high);//Prints closest value 
+                Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", search[high], high);//Prints closest value
+                Console.WriteLine("Result found in {0} operations", counter);
             }
             else if (key < 0)//Checks if key is outside the bounds of the array
             {
                 Console.WriteLine("Sub zero values not accepted, the first value in this array is {0}", search[low]);//Prints closest value
+                Console.WriteLine("Result found in {0} operations", counter);
             }
             else if (low > high)//Checks if the value isnt found 
             {
@@ -415,10 +433,12 @@ namespace Assessment1
                 if (closest == search[low])
                 {
                     Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", closest, low);//Prints closest value
+                    Console.WriteLine("Result found in {0} operations", counter);
                 }
                 else if (closest == search[high])
                 {
                     Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", closest, high);//Prints closest value
+                    Console.WriteLine("Result found in {0} operations", counter);
                 }
 
 
@@ -429,6 +449,7 @@ namespace Assessment1
                 if (key == search[mid])//Checks if the value has been found
                 {
                     Console.WriteLine("value {0} found in location {1} ", key, mid);//Prints the value and its location
+                    Console.WriteLine("Result found in {0} operations", counter);
                     if (search[mid - 1] == key)
                     {
                        BinarySearch(key, search, low, mid - 1);//Checks for more of the same value in lower sub array
@@ -452,15 +473,17 @@ namespace Assessment1
         
         static void InterpolationSearch(int[] search, int high, int key, int low)
         {
-            
+            counter++;
             int index = -1;
             if (key > search[high])//Checks if key is outside the bounds of the array
             {
                 Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", search[high], high);//Prints closest value
+                Console.WriteLine("Result found in {0} operations", counter);
             }
             else if(key < 0)//Checks if key is outside the bounds of the array
             {
                 Console.WriteLine("Sub zero values not accepted, the first value in this array is {0}", search[low]);//Prints closest value
+                Console.WriteLine("Result found in {0} operations", counter);
             }
             else
             {
@@ -470,6 +493,7 @@ namespace Assessment1
                     if (search[index] == key)
                     {
                         Console.WriteLine("value {0} found in location {1} ", key, index);//Prints the value and its location
+                        Console.WriteLine("Result found in {0} operations", counter);
                         if (search[index + 1] == key)
                         {
 
@@ -499,10 +523,12 @@ namespace Assessment1
                     if (closest == search[low])
                     {
                         Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", closest, low);//Prints closest value
+                        Console.WriteLine("Result found in {0} operations", counter);
                     }
                     else if (closest == search[high])
                     {
                         Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", closest, high);//Prints closest value
+                        Console.WriteLine("Result found in {0} operations", counter);
                     }
                 }
             }
@@ -617,13 +643,15 @@ namespace Assessment1
                 {
                     ec3 = false;
                     searchArray = QuickSortReturn(searchArray, len);//Sorts array
-                    BinarySearch(searchNum, searchArray, 0, len);//Runs binary search
+                    counter = 0;
+                    BinarySearch(searchNum, searchArray, 0, len - 1);//Runs binary search
                    
                 }
                 else if(choice == "i" || choice == "I")
                 {
                     ec3 = false;
                     searchArray = QuickSortReturn(searchArray, len);//Sorts array
+                    counter = 0;
                     InterpolationSearch(searchArray, len - 1, searchNum, 0);//Runs interpolation search
                     
                 }
@@ -679,6 +707,7 @@ namespace Assessment1
                 
             }
             Console.WriteLine(string.Join(" ", newa));//Outputs list
+            Console.WriteLine("This operation was complete in {0} operations", counter);
 
         }
 
