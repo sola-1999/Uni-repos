@@ -123,7 +123,7 @@ namespace Assessment1
                     {
 
                         selectedArray = merge3(Array1_2048, Array2_2048, Array3_2048);//Merges arrays
-
+                        ec = false;
                         sortedArray = convertArray(selectedArray);
                         chooseSort(sortedArray);
                     }
@@ -590,6 +590,10 @@ namespace Assessment1
                             bubbleSort(array, len, "d");//Runs the bubble sort method
                             watch.Stop();
                         }
+                        else
+                        {
+                            ec2 = true;
+                        }
                     }
                     else if (sortSelect == "i" || sortSelect == "I")
                     {
@@ -606,6 +610,10 @@ namespace Assessment1
                             watch.Start();
                             insertionSort(array, len, "d");//Runs the bubble sort method
                             watch.Stop();
+                        }
+                        else
+                        {
+                            ec2 = true;
                         }
 
                     }
@@ -625,6 +633,10 @@ namespace Assessment1
                             MergeInitialise(array, len, "d");//Runs the bubble sort method
                             watch.Stop();
                         }
+                        else
+                        {
+                            ec2 = true;
+                        }
 
                     }
                     else if (sortSelect == "q" || sortSelect == "Q")
@@ -643,15 +655,22 @@ namespace Assessment1
                             QuickSortInitialise(array, len, "d");//Runs the bubble sort method
                             watch.Stop();
                         }
-                        Console.WriteLine("");
-                        Console.WriteLine("This algorithm was executed in {0} Milliseconds", watch.ElapsedMilliseconds);
+                        else
+                        {
+                            ec2 = true;
+                        }
+
                     }
 
+                    
                     else
                     {
                         ec2 = true;
                         Console.WriteLine("Invalid input.");
                     }
+
+                    Console.WriteLine("");
+                    Console.WriteLine("This algorithm was executed in {0} Milliseconds", watch.ElapsedMilliseconds);
 
                 }
 
