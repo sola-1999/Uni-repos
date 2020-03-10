@@ -418,11 +418,13 @@ namespace Assessment1
             counter++;
             if(key > search[high])//Checks if key is outside the bounds of the array
             {
+                Console.WriteLine("");
                 Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", search[high], high);//Prints closest value
                 Console.WriteLine("Result found in {0} operations", counter);
             }
             else if (key < 0)//Checks if key is outside the bounds of the array
             {
+                Console.WriteLine("");
                 Console.WriteLine("Sub zero values not accepted, the first value in this array is {0}", search[low]);//Prints closest value
                 Console.WriteLine("Result found in {0} operations", counter);
             }
@@ -433,11 +435,13 @@ namespace Assessment1
 
                 if (closest == search[low])
                 {
+                    Console.WriteLine("");
                     Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", closest, low);//Prints closest value
                     Console.WriteLine("Result found in {0} operations", counter);
                 }
                 else if (closest == search[high])
                 {
+                    Console.WriteLine("");
                     Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", closest, high);//Prints closest value
                     Console.WriteLine("Result found in {0} operations", counter);
                 }
@@ -449,6 +453,7 @@ namespace Assessment1
                 int mid = (low + high) / 2;
                 if (key == search[mid])//Checks if the value has been found
                 {
+                    Console.WriteLine("");
                     Console.WriteLine("value {0} found in location {1} ", key, mid);//Prints the value and its location
                     Console.WriteLine("Result found in {0} operations", counter);
                     if (search[mid - 1] == key)
@@ -478,11 +483,13 @@ namespace Assessment1
             int index = -1;
             if (key > search[high])//Checks if key is outside the bounds of the array
             {
+                Console.WriteLine("");
                 Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", search[high], high);//Prints closest value
                 Console.WriteLine("Result found in {0} operations", counter);
             }
             else if(key < 0)//Checks if key is outside the bounds of the array
             {
+                Console.WriteLine("");
                 Console.WriteLine("Sub zero values not accepted, the first value in this array is {0}", search[low]);//Prints closest value
                 Console.WriteLine("Result found in {0} operations", counter);
             }
@@ -493,6 +500,7 @@ namespace Assessment1
                     index = (int)(low + (((int)(high - low) / (search[high] - search[low])) * (key - search[low])));
                     if (search[index] == key)
                     {
+                        Console.WriteLine("");
                         Console.WriteLine("value {0} found in location {1} ", key, index);//Prints the value and its location
                         Console.WriteLine("Result found in {0} operations", counter);
                         if (search[index + 1] == key)
@@ -523,11 +531,13 @@ namespace Assessment1
                     int closest = comp(key, low, high, search);//Finds the closest value
                     if (closest == search[low])
                     {
+                        Console.WriteLine("");
                         Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", closest, low);//Prints closest value
                         Console.WriteLine("Result found in {0} operations", counter);
                     }
                     else if (closest == search[high])
                     {
+                        Console.WriteLine("");
                         Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", closest, high);//Prints closest value
                         Console.WriteLine("Result found in {0} operations", counter);
                     }
@@ -549,7 +559,7 @@ namespace Assessment1
         {
             int len = array.Length;//Gets lenght of the array
             bool ec2 = true;//Used for error checking
-            var watch = new System.Diagnostics.Stopwatch();
+            var watch = new System.Diagnostics.Stopwatch();//Sets up a timer to time algorithms 
             while (ec2 == true)
             {
                 ec2 = false;
@@ -568,9 +578,9 @@ namespace Assessment1
                         {
                             
                             ec2 = false;
-                            watch.Start();
+                            watch.Start();//Starts timer
                             bubbleSort(array, len, "a");//Runs the bubble sort method
-                            watch.Stop();
+                            watch.Stop();//Snds timer
                         }
                         else if (AorD == "d" || AorD == "D")
                         {
@@ -633,7 +643,7 @@ namespace Assessment1
                             QuickSortInitialise(array, len, "d");//Runs the bubble sort method
                             watch.Stop();
                         }
-
+                        Console.WriteLine("");
                         Console.WriteLine("This algorithm was executed in {0} Milliseconds", watch.ElapsedMilliseconds);
                     }
 
@@ -657,7 +667,7 @@ namespace Assessment1
             string searchstr = Console.ReadLine();//Asks user to choose a number to search
             int searchNum = Convert.ToInt32(searchstr);//Asks user to choose a number to search
             bool ec3 = true;//Used for error checking
-            var watch2 = new System.Diagnostics.Stopwatch();
+            var watch2 = new System.Diagnostics.Stopwatch();//Sets up a timer to time algorithms
 
             while (ec3 == true)
             {
@@ -667,9 +677,9 @@ namespace Assessment1
                     ec3 = false;
                     searchArray = QuickSortReturn(searchArray, len);//Sorts array
                     counter = 0;
-                    watch2.Start();
+                    watch2.Start();//Starts timer
                     BinarySearch(searchNum, searchArray, 0, len - 1);//Runs binary search
-                    watch2.Stop();
+                    watch2.Stop();//Ends timer
 
                 }
                 else if(choice == "i" || choice == "I")
@@ -684,6 +694,7 @@ namespace Assessment1
                 }
 
             }
+            Console.WriteLine("");
             Console.WriteLine("This algorithm was executed in {0} Milliseconds", watch2.ElapsedMilliseconds);
 
         }
@@ -734,6 +745,7 @@ namespace Assessment1
                 }
                 
             }
+            Console.WriteLine("");
             Console.WriteLine(string.Join(" ", newa));//Outputs list
             Console.WriteLine("This operation was complete in {0} operations", counter);
 
