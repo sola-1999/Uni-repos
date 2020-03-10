@@ -416,7 +416,7 @@ namespace Assessment1
         static void BinarySearch(int key, int[] search, int low, int high)
         {
             counter++;
-            if(key > search[high])//Checks if key is outside the bounds of the array
+            if(key > search.Length)//Checks if key is outside the bounds of the array
             {
                 Console.WriteLine("");
                 Console.WriteLine("Value not found/no more values, the nearst value is: {0} in location {1}", search[high], high);//Prints closest value
