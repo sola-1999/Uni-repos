@@ -95,6 +95,7 @@ namespace Assessment1
 
                         sortedArray = convertArray(selectedArray);
                         chooseSort(sortedArray);
+                        ec = false;
                     }
                     else
                     {
@@ -548,6 +549,7 @@ namespace Assessment1
         {
             int len = array.Length;//Gets lenght of the array
             bool ec2 = true;//Used for error checking
+            var watch = new System.Diagnostics.Stopwatch();
             while (ec2 == true)
             {
                 ec2 = false;
@@ -564,13 +566,19 @@ namespace Assessment1
                     {
                         if (AorD == "a" || AorD == "A")
                         {
+                            
                             ec2 = false;
+                            watch.Start();
                             bubbleSort(array, len, "a");//Runs the bubble sort method
+                            watch.Stop();
                         }
                         else if (AorD == "d" || AorD == "D")
                         {
+
                             ec2 = false;
+                            watch.Start();
                             bubbleSort(array, len, "d");//Runs the bubble sort method
+                            watch.Stop();
                         }
                     }
                     else if (sortSelect == "i" || sortSelect == "I")
@@ -578,12 +586,16 @@ namespace Assessment1
                         if (AorD == "a" || AorD == "A")
                         {
                             ec2 = false;
+                            watch.Start();
                             insertionSort(array, len, "a");//Runs the bubble sort method
+                            watch.Stop();
                         }
                         else if (AorD == "d" || AorD == "D")
                         {
                             ec2 = false;
+                            watch.Start();
                             insertionSort(array, len, "d");//Runs the bubble sort method
+                            watch.Stop();
                         }
 
                     }
@@ -592,12 +604,16 @@ namespace Assessment1
                         if (AorD == "a" || AorD == "A")
                         {
                             ec2 = false;
+                            watch.Start();
                             MergeInitialise(array, len, "a");//Runs the bubble sort method
+                            watch.Stop();
                         }
                         else if (AorD == "d" || AorD == "D")
                         {
                             ec2 = false;
+                            watch.Start();
                             MergeInitialise(array, len, "d");//Runs the bubble sort method
+                            watch.Stop();
                         }
 
                     }
@@ -606,14 +622,19 @@ namespace Assessment1
                         if (AorD == "a" || AorD == "A")
                         {
                             ec2 = false;
+                            watch.Start();
                             QuickSortInitialise(array, len, "a");//Runs the bubble sort method
+                            watch.Stop();
                         }
                         else if (AorD == "d" || AorD == "D")
                         {
                             ec2 = false;
+                            watch.Start();
                             QuickSortInitialise(array, len, "d");//Runs the bubble sort method
+                            watch.Stop();
                         }
 
+                        Console.WriteLine("This algorithm was executed in {0} Milliseconds", watch.ElapsedMilliseconds);
                     }
 
                     else
@@ -625,6 +646,7 @@ namespace Assessment1
                 }
 
             }
+            
         }
 
         static void ChooseSearch(int[] searchArray, int len)
@@ -635,6 +657,7 @@ namespace Assessment1
             string searchstr = Console.ReadLine();//Asks user to choose a number to search
             int searchNum = Convert.ToInt32(searchstr);//Asks user to choose a number to search
             bool ec3 = true;//Used for error checking
+            var watch2 = new System.Diagnostics.Stopwatch();
 
             while (ec3 == true)
             {
@@ -644,19 +667,24 @@ namespace Assessment1
                     ec3 = false;
                     searchArray = QuickSortReturn(searchArray, len);//Sorts array
                     counter = 0;
+                    watch2.Start();
                     BinarySearch(searchNum, searchArray, 0, len - 1);//Runs binary search
-                   
+                    watch2.Stop();
+
                 }
                 else if(choice == "i" || choice == "I")
                 {
                     ec3 = false;
                     searchArray = QuickSortReturn(searchArray, len);//Sorts array
                     counter = 0;
+                    watch2.Start();
                     InterpolationSearch(searchArray, len - 1, searchNum, 0);//Runs interpolation search
-                    
+                    watch2.Stop();
+
                 }
 
             }
+            Console.WriteLine("This algorithm was executed in {0} Milliseconds", watch2.ElapsedMilliseconds);
 
         }
 
