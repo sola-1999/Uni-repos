@@ -1,7 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-
+/*
+ *Title      : Assessment1
+ *Form       : Program.cs
+ *Use        : Searches and sorts arrays
+ *Creator    : Max Jameson
+ *Student ID : 19702735
+ */
 
 namespace Assessment1
 {
