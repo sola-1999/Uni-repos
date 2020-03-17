@@ -1,0 +1,11 @@
+C:\Users\maxja\Source\Repos\Uni-repos\OOAssessment2\OOAssessment2\bin\Debug\netcoreapp3.1\OOAssessment2.exe
+C:\Users\maxja\Source\Repos\Uni-repos\OOAssessment2\OOAssessment2\bin\Debug\netcoreapp3.1\OOAssessment2.deps.json
+C:\Users\maxja\Source\Repos\Uni-repos\OOAssessment2\OOAssessment2\bin\Debug\netcoreapp3.1\OOAssessment2.runtimeconfig.json
+C:\Users\maxja\Source\Repos\Uni-repos\OOAssessment2\OOAssessment2\bin\Debug\netcoreapp3.1\OOAssessment2.runtimeconfig.dev.json
+C:\Users\maxja\Source\Repos\Uni-repos\OOAssessment2\OOAssessment2\bin\Debug\netcoreapp3.1\OOAssessment2.dll
+C:\Users\maxja\Source\Repos\Uni-repos\OOAssessment2\OOAssessment2\bin\Debug\netcoreapp3.1\OOAssessment2.pdb
+C:\Users\maxja\Source\Repos\Uni-repos\OOAssessment2\OOAssessment2\obj\Debug\netcoreapp3.1\OOAssessment2.csprojAssemblyReference.cache
+C:\Users\maxja\Source\Repos\Uni-repos\OOAssessment2\OOAssessment2\obj\Debug\netcoreapp3.1\OOAssessment2.AssemblyInfoInputs.cache
+C:\Users\maxja\Source\Repos\Uni-repos\OOAssessment2\OOAssessment2\obj\Debug\netcoreapp3.1\OOAssessment2.AssemblyInfo.cs
+C:\Users\maxja\Source\Repos\Uni-repos\OOAssessment2\OOAssessment2\obj\Debug\netcoreapp3.1\OOAssessment2.dll
+C:\Users\maxja\Source\Repos\Uni-repos\OOAssessment2\OOAssessment2\obj\Debug\netcoreapp3.1\OOAssessment2.pdb

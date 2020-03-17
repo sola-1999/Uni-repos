@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace OOAssessment2
 {
@@ -6,7 +7,27 @@ namespace OOAssessment2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            bool ec = true;//Used for error checking
+            string[] repo1a = System.IO.File.ReadAllLines("GitRepositories_1a.txt");
+            string[] repo1b = System.IO.File.ReadAllLines("GitRepositories_1b.txt");
+            string[] repo2a = System.IO.File.ReadAllLines("GitRepositories_2a.txt");
+            string[] repo2b = System.IO.File.ReadAllLines("GitRepositories_2b.txt");
+            string[] repo3a = System.IO.File.ReadAllLines("GitRepositories_3a.txt");
+            string[] repo3b = System.IO.File.ReadAllLines("GitRepositories_3b.txt");//Pulls text files
+
+            List<Array> repos = new List<Array> { repo1a, repo1b , repo2a , repo2b , repo3a , repo3b };//Creates a list to store the files
+            int reposLen = repos.Count - 1;//Gets the length of the list
+            
+
+            filechoice files = new filechoice(repos, reposLen);//Creates an object which selects files
+            Array file1 = files.Choose();
+            Array file2 = files.Choose();//Runs method to choose files
+            
+            
+
+
+
+
         }
     }
 }
