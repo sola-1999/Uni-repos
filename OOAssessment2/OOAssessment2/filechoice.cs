@@ -6,19 +6,25 @@ namespace OOAssessment2
 {
     class filechoice
     {
-        private List<Array> files { get; set; }//Stores arrays of files
+        string[] repo1a = System.IO.File.ReadAllLines("GitRepositories_1a.txt");
+        string[] repo1b = System.IO.File.ReadAllLines("GitRepositories_1b.txt");
+        string[] repo2a = System.IO.File.ReadAllLines("GitRepositories_2a.txt");
+        string[] repo2b = System.IO.File.ReadAllLines("GitRepositories_2b.txt");
+        string[] repo3a = System.IO.File.ReadAllLines("GitRepositories_3a.txt");
+        string[] repo3b = System.IO.File.ReadAllLines("GitRepositories_3b.txt");//Pulls text files
+        private List<string[]> files { get; set; }//Stores array of files
         private int lenght { get; set; }//Stores lenght of the array
 
-        public filechoice(List<Array> repos, int len)
+        public filechoice(List<string[]> repos, int len)
         {
             files = repos;
             lenght = len;
 
         }
 
-        public Array Choose()
+        public string[] Choose()
         {
-            Array file;//Sets an array to store the chosen file
+            
 
                 Console.WriteLine("Choose a text file to search (0 = 1a, 1 = 1b, 2 = 2a, 3 = 2b, 4 = 3a, 5 = 3b);");
                 string SChoice = Console.ReadLine();
@@ -27,7 +33,7 @@ namespace OOAssessment2
                 if (Choice >= 0 & Choice <= lenght)
                 {
                     
-                    file = files[Choice];
+                    string[] file = files[Choice];
                     return file;//Returns the chosen file
 
 
