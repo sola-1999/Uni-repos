@@ -26,16 +26,16 @@ namespace OOAssessment2
             gitdiff git = new gitdiff(file1, file2);
 
 
-            difference = git.diff();
+            difference = git.diff();//Runs the git diff command 
 
             if(difference == true)
             {
-                Console.WriteLine("files 1 and 2 are different");
+                Console.WriteLine("files 1 and 2 are different");//Lets the user know the files are different
 
             }
             else
             {
-                Console.WriteLine("These files are the same");
+                Console.WriteLine("These files are the same");//Lets the user know the files are the same
             }
 
 
