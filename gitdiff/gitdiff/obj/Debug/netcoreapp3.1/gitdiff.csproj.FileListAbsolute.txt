@@ -1,0 +1,11 @@
+C:\Users\maxja\source\repos\Uni-repos\gitdiff\gitdiff\bin\Debug\netcoreapp3.1\gitdiff.exe
+C:\Users\maxja\source\repos\Uni-repos\gitdiff\gitdiff\bin\Debug\netcoreapp3.1\gitdiff.deps.json
+C:\Users\maxja\source\repos\Uni-repos\gitdiff\gitdiff\bin\Debug\netcoreapp3.1\gitdiff.runtimeconfig.json
+C:\Users\maxja\source\repos\Uni-repos\gitdiff\gitdiff\bin\Debug\netcoreapp3.1\gitdiff.runtimeconfig.dev.json
+C:\Users\maxja\source\repos\Uni-repos\gitdiff\gitdiff\bin\Debug\netcoreapp3.1\gitdiff.dll
+C:\Users\maxja\source\repos\Uni-repos\gitdiff\gitdiff\bin\Debug\netcoreapp3.1\gitdiff.pdb
+C:\Users\maxja\source\repos\Uni-repos\gitdiff\gitdiff\obj\Debug\netcoreapp3.1\gitdiff.csprojAssemblyReference.cache
+C:\Users\maxja\source\repos\Uni-repos\gitdiff\gitdiff\obj\Debug\netcoreapp3.1\gitdiff.AssemblyInfoInputs.cache
+C:\Users\maxja\source\repos\Uni-repos\gitdiff\gitdiff\obj\Debug\netcoreapp3.1\gitdiff.AssemblyInfo.cs
+C:\Users\maxja\source\repos\Uni-repos\gitdiff\gitdiff\obj\Debug\netcoreapp3.1\gitdiff.dll
+C:\Users\maxja\source\repos\Uni-repos\gitdiff\gitdiff\obj\Debug\netcoreapp3.1\gitdiff.pdb

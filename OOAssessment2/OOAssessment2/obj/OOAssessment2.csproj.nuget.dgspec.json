@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\maxja\\Source\\Repos\\Uni-repos\\OOAssessment2\\OOAssessment2\\OOAssessment2.csproj": {}
+    "C:\\Users\\maxja\\source\\repos\\Uni-repos\\OOAssessment2\\OOAssessment2\\OOAssessment2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\maxja\\Source\\Repos\\Uni-repos\\OOAssessment2\\OOAssessment2\\OOAssessment2.csproj": {
+    "C:\\Users\\maxja\\source\\repos\\Uni-repos\\OOAssessment2\\OOAssessment2\\OOAssessment2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maxja\\Source\\Repos\\Uni-repos\\OOAssessment2\\OOAssessment2\\OOAssessment2.csproj",
+        "projectUniqueName": "C:\\Users\\maxja\\source\\repos\\Uni-repos\\OOAssessment2\\OOAssessment2\\OOAssessment2.csproj",
         "projectName": "OOAssessment2",
-        "projectPath": "C:\\Users\\maxja\\Source\\Repos\\Uni-repos\\OOAssessment2\\OOAssessment2\\OOAssessment2.csproj",
+        "projectPath": "C:\\Users\\maxja\\source\\repos\\Uni-repos\\OOAssessment2\\OOAssessment2\\OOAssessment2.csproj",
         "packagesPath": "C:\\Users\\maxja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maxja\\Source\\Repos\\Uni-repos\\OOAssessment2\\OOAssessment2\\obj\\",
+        "outputPath": "C:\\Users\\maxja\\source\\repos\\Uni-repos\\OOAssessment2\\OOAssessment2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
