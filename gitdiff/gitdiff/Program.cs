@@ -9,8 +9,8 @@ namespace gitdiff
         {
 
             //Used to stores files as array
-            string[] file1array;
-            string[] file2array;
+            string file1array;
+            string file2array;
 
             bool difference;
 
@@ -28,8 +28,8 @@ namespace gitdiff
                 fileCheck check2 = new fileCheck(args[1]);
 
                 //Stores files as arrays
-                file1array = File.ReadAllLines(args[0]);
-                file2array = File.ReadAllLines(args[1]);
+                file1array = File.ReadAllText(args[0]);
+                file2array = File.ReadAllText(args[1]);
 
 
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\maxja\\source\\repos\\Uni-repos\\gitdiff\\gitdiff\\gitdiff.csproj": {}
+    "C:\\Users\\maxja\\Source\\Repos\\Uni-repos\\gitdiff\\gitdiff\\gitdiff.csproj": {}
   },
   "projects": {
-    "C:\\Users\\maxja\\source\\repos\\Uni-repos\\gitdiff\\gitdiff\\gitdiff.csproj": {
+    "C:\\Users\\maxja\\Source\\Repos\\Uni-repos\\gitdiff\\gitdiff\\gitdiff.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maxja\\source\\repos\\Uni-repos\\gitdiff\\gitdiff\\gitdiff.csproj",
+        "projectUniqueName": "C:\\Users\\maxja\\Source\\Repos\\Uni-repos\\gitdiff\\gitdiff\\gitdiff.csproj",
         "projectName": "gitdiff",
-        "projectPath": "C:\\Users\\maxja\\source\\repos\\Uni-repos\\gitdiff\\gitdiff\\gitdiff.csproj",
+        "projectPath": "C:\\Users\\maxja\\Source\\Repos\\Uni-repos\\gitdiff\\gitdiff\\gitdiff.csproj",
         "packagesPath": "C:\\Users\\maxja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maxja\\source\\repos\\Uni-repos\\gitdiff\\gitdiff\\obj\\",
+        "outputPath": "C:\\Users\\maxja\\Source\\Repos\\Uni-repos\\gitdiff\\gitdiff\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
