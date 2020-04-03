@@ -7,17 +7,22 @@ namespace gitdiff
 {
     class fileCheck
     {
+        //Stores test file
         private string Testfile { get; set; }
 
         public fileCheck(string file)
         {
+            //Saves the file to be tested
             Testfile = file;
+
+            //Runs test method
             test();
 
         }
 
         private void test()
         {
+            //Attempts to read the file to see if it exists+
             try
             {
              File.ReadAllText(Testfile);
