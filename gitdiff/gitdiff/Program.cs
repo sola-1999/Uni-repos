@@ -9,8 +9,9 @@ namespace gitdiff
         {
 
             //Used to stores files as array
-            string file1array;
-            string file2array;
+
+            string[] file1;
+            string[] file2;
 
             bool difference;
 
@@ -28,14 +29,15 @@ namespace gitdiff
                 fileCheck check2 = new fileCheck(args[1]);
 
                 //Stores files as arrays
-                file1array = File.ReadAllText(args[0]);
-                file2array = File.ReadAllText(args[1]);
+                file1 = File.ReadAllLines(args[0]);
+                file2 = File.ReadAllLines(args[1]);
 
+                Console.WriteLine("{0}",file1[2]);
 
 
 
                 //Sets up a git object
-                diff git = new diff(file1array, file2array);
+                diff git = new diff(file1, file2);
 
                 //Checks for differences in the files
                 difference = git.GitDiff();
@@ -44,7 +46,7 @@ namespace gitdiff
                 {
                     //Lets the user know the files are different
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("files 1 and 2 are different");
+                    Console.WriteLine("files {0} and {1} are different",args[0], args[1]);
                     Console.ForegroundColor = ConsoleColor.White;
 
                 }
