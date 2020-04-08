@@ -15,6 +15,8 @@ namespace gitdiff
 
             bool difference;
 
+            string test1 = "3a.txt";
+            string test2 = "3b.txt";
             //Checks if the given arguments are valid inputs
             if (args.Length != 2 || args == null)
             {
@@ -32,12 +34,10 @@ namespace gitdiff
                 file1 = File.ReadAllLines(args[0]);
                 file2 = File.ReadAllLines(args[1]);
 
-                Console.WriteLine("{0}",file1[2]);
-
 
 
                 //Sets up a git object
-                diff git = new diff(file1, file2);
+                diff git = new diff(file1, file2, args[0] ,args[1]);
 
                 //Checks for differences in the files
                 difference = git.GitDiff();
