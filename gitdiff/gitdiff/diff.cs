@@ -71,12 +71,10 @@ namespace gitdiff
                     //Ouput difference
                     else
                     {
-                        Console.WriteLine("Before jump {0} {1}", file1words[x], file2words[k]);
-                        Console.WriteLine("before x = {0} k = {1}", x, k);
+                        
                         //Runs jump method
                         Jump(file1words, file2words);
-                        Console.WriteLine("after jump {0} {1}", file1words[x], file2words[k]);
-                        Console.WriteLine("after x = {0} k = {1}", x, k);
+                        
 
                         Console.WriteLine("line: {0} ", lineNumber);
                         string output = "";
@@ -89,7 +87,7 @@ namespace gitdiff
                             while (j != k)
                             {
                                 
-                                output = output + "" + file2words[j];
+                                output = output + " " + file2words[j];
                                
                                 j++;
                             }
@@ -103,11 +101,23 @@ namespace gitdiff
                             while (j != x)
                             {
 
-                                output = output + "" + file1words[j];
+                                output = output + " " + file1words[j];
                                 
                                 j++;
                             }
                             
+                            Console.WriteLine(" + {0}", output);
+                        }
+
+                        else if (k == x)
+                        {
+                            j = k - 2;
+                            while(j != x + 2)
+                            {
+                                output = output + " " + file2words[j];
+                                j++;
+                            }
+
                             Console.WriteLine(" + {0}", output);
                         }
                         Console.WriteLine(" ");
@@ -139,6 +149,7 @@ namespace gitdiff
                 {
                     found = true;
                     x = j;
+                    k = k + 1;
                 }
                 j++;
             }
@@ -155,6 +166,7 @@ namespace gitdiff
                 {
                     found = true;
                     k = j;
+                    x = x + 1;
                 }
                 j++;
             }
