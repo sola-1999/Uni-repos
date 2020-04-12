@@ -17,8 +17,10 @@ namespace gitdiff
         //Stores values to loop through array
         private int x { get; set; }
         private int i { get; set; }
-        private int j { get; set; }
         private int k { get; set; }
+
+        //Stores temporary values
+        private int temp { get; set; }
 
         //Stores difference boolean
         private bool different { get; set; } = false; 
@@ -52,8 +54,9 @@ namespace gitdiff
                 List<string> file2words = new List<string>(words2.Split(" "));
 
                 //Increments through the list of strings 
-                while(x < file1words.Count)
+                while(x < file1words.Count && k < file2words.Count)
                 {
+                    
                     //Checks if the currents selected words are the same
                     if (file1words[x] == file2words[k])
                     {
@@ -83,13 +86,13 @@ namespace gitdiff
                         if (k > x)
                         {
                             //Loops through line to construct different string
-                            j = x - 1;
-                            while (j != k)
+                            temp = x - 1;
+                            while (temp != k)
                             {
                                 
-                                output = output + " " + file2words[j];
+                                output = output + " " + file2words[temp];
                                
-                                j++;
+                                temp++;
                             }
                             
                             Console.WriteLine(" + {0}", output);
@@ -97,13 +100,13 @@ namespace gitdiff
 
                         else if (k < x)
                         {
-                            j = k - 1;
-                            while (j != x)
+                            temp = k - 1;
+                            while (temp != x)
                             {
 
-                                output = output + " " + file1words[j];
+                                output = output + " " + file1words[temp];
                                 
-                                j++;
+                                temp++;
                             }
                             
                             Console.WriteLine(" + {0}", output);
@@ -111,11 +114,11 @@ namespace gitdiff
 
                         else if (k == x)
                         {
-                            j = k - 2;
-                            while(j != x + 2)
+                            temp = k - 2;
+                            while(temp != x + 1)
                             {
-                                output = output + " " + file2words[j];
-                                j++;
+                                output = output + " " + file2words[temp];
+                                temp++;
                             }
 
                             Console.WriteLine(" + {0}", output);
@@ -137,38 +140,48 @@ namespace gitdiff
         {
             bool found = false;
 
-            j = x;
-            while (j < file1words.Count && found == false)
+            temp = x;
+            //Loops through line of first file
+            while (temp < file1words.Count && found == false)
             {
-                if (file1words[j] == file2words[k])
+                //Checks if temp is the same as file 2
+                if (file1words[temp] == file2words[k])
                 {
+                    //sets file 1 counter to same words as file 2
                     found = true;
-                    x = j;
+                    x = temp;
                 }
-                else if (file1words[j] == file2words[k+1])
+                else if (file1words[temp] == file2words[k+1])
                 {
                     found = true;
-                    x = j;
+                    x = temp;
+
+                    //Adjust position in file 1
                     k = k + 1;
                 }
-                j++;
+                temp++;
             }
 
-            j = k;
-            while (j < file2words.Count && found == false)
+            temp = k;
+            //Loops through line of second file
+            while (temp < file2words.Count && found == false)
             {
-                if (file2words[j] == file1words[x])
+                //Checks if temp is the same as file 2
+                if (file2words[temp] == file1words[x])
                 {
+                    //sets file 1 counter to same words as file 1
                     found = true;
-                    k = j;
+                    k = temp;
                 }
-                else if (file2words[j] == file1words[x+1])
+                else if (file2words[temp] == file1words[x+1])
                 {
                     found = true;
-                    k = j;
+                    k = temp;
+
+                    //Adjusts positon in file 2
                     x = x + 1;
                 }
-                j++;
+                temp++;
             }
 
         }
