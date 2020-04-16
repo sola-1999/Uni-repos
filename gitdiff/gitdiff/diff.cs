@@ -8,22 +8,29 @@ namespace gitdiff
     class diff
     {
         //Stores files
-        private string[] ofile { get; set; }
-        private string[] sfile { get; set; }
+        public string[] ofile { get; set; }
+        public string[] sfile { get; set; }
+        public string f1name { get; set; }
+        public string f2name { get; set; }
 
         //Stores line number
-        private int lineNumber;
+        public int lineNumber;
 
         //Stores values to loop through array
-        private int x { get; set; }
-        private int i { get; set; }
-        private int k { get; set; }
+        public int x { get; set; }
+        public int i { get; set; }
+        public int k { get; set; }
 
         //Stores temporary values
-        private int temp { get; set; }
+        public int temp { get; set; }
 
         //Stores difference boolean
-        private bool different { get; set; } = false; 
+        public bool different { get; set; } = false;
+
+        //Stores current line in list
+        public List<string> file1words { get; set; }
+        public List<string> file2words { get; set; }
+
 
 
 
@@ -32,14 +39,16 @@ namespace gitdiff
             //Intialises object
             ofile = file1;
             sfile = file2;
-            x = 0;
-            i = 0;
-            k = 0;
+            f1name = fileName1;
+            f2name = fileName2;
+
 
         }
 
         public bool GitDiff()
         {
+            i = 0;
+           
 
             //Loops through file arrays
             while (i < ofile.Length && i < sfile.Length)
@@ -50,8 +59,8 @@ namespace gitdiff
                 k = 0;
                 string words1 = ofile[i];
                 string words2 = sfile[i];
-                List<string> file1words = new List<string>(words1.Split(" "));
-                List<string> file2words = new List<string>(words2.Split(" "));
+                file1words = new List<string>(words1.Split(" "));
+                file2words = new List<string>(words2.Split(" "));
 
                 //Increments through the list of strings 
                 while(x < file1words.Count && k < file2words.Count)
@@ -74,55 +83,15 @@ namespace gitdiff
                     //Ouput difference
                     else
                     {
-                        
+
+                        output printer = new output(ofile, sfile, f1name, f2name);
+                        printer.GetOutput(x, k, file1words, file2words);
                         //Runs jump method
                         Jump(file1words, file2words);
+
+                        printer.Printer(x, k, lineNumber);
                         
-
-                        Console.WriteLine("line: {0} ", lineNumber);
-                        string output = "";
-
-                        //Tests which file has additional text
-                        if (k > x)
-                        {
-                            //Loops through line to construct different string
-                            temp = x - 1;
-                            while (temp != k)
-                            {
-                                
-                                output = output + " " + file2words[temp];
-                               
-                                temp++;
-                            }
-                            
-                            Console.WriteLine(" + {0}", output);
-                        }
-
-                        else if (k < x)
-                        {
-                            temp = k - 1;
-                            while (temp != x)
-                            {
-
-                                output = output + " " + file1words[temp];
-                                
-                                temp++;
-                            }
-                            
-                            Console.WriteLine(" + {0}", output);
-                        }
-
-                        else if (k == x)
-                        {
-                            temp = k - 2;
-                            while(temp != x + 1)
-                            {
-                                output = output + " " + file2words[temp];
-                                temp++;
-                            }
-
-                            Console.WriteLine(" + {0}", output);
-                        }
+                        
                         Console.WriteLine(" ");
                         different = true;
                     }

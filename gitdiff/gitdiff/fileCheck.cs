@@ -31,6 +31,7 @@ namespace gitdiff
             catch(FileNotFoundException e)
             {
                 Console.WriteLine("File {0} not found: {1} ", Testfile, e.Message );
+                
 
             }
         }
