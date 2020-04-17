@@ -45,10 +45,13 @@ namespace gitdiff
 
         }
 
-        public bool GitDiff()
+        public void GitDiff()
         {
             i = 0;
-           
+
+            //Creates an object to handle the programs outputs
+            output printer = new output(ofile, sfile, f1name, f2name);
+
 
             //Loops through file arrays
             while (i < ofile.Length && i < sfile.Length)
@@ -84,11 +87,13 @@ namespace gitdiff
                     else
                     {
 
-                        output printer = new output(ofile, sfile, f1name, f2name);
-                        printer.GetOutput(x, k, file1words, file2words);
+                        //Runs method to store the different part of the string
+                        printer.GetOutput(x, k, file1words, file2words, lineNumber);
+                        
                         //Runs jump method
                         Jump(file1words, file2words);
 
+                        //Runs a method to print the difference
                         printer.Printer(x, k, lineNumber);
                         
                         
@@ -100,9 +105,11 @@ namespace gitdiff
                 }
                 i++;
             }
-  
-            //returns difference value to the program
-            return different;
+
+            //Rims the print method to tell the user if the files are different
+            printer.Printer(different);
+            
+            
         }
         
         private void Jump(List<string> file1words, List<string> file2words)

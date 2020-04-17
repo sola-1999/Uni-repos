@@ -13,10 +13,12 @@ namespace gitdiff
             string[] file1;
             string[] file2;
 
+
             bool difference;
 
-            string test1 = "3a.txt";
-            string test2 = "3b.txt";
+            //Stores if the two files can be compared
+            bool SameCheck;
+            
             //Checks if the given arguments are valid inputs
             if (args.Length != 2 || args == null)
             {
@@ -25,38 +27,34 @@ namespace gitdiff
             }
             else
             {
+                 
                 
                 //Checks if files exist
                 fileCheck check1 = new fileCheck(args[0]);
                 fileCheck check2 = new fileCheck(args[1]);
 
+                //Sets a bool on if the files can be compared
+                SameCheck = check1.CheckSame(args[0], args[1]);
+
                 //Stores files as arrays
                 file1 = File.ReadAllLines(args[0]);
                 file2 = File.ReadAllLines(args[1]);
 
-
-
-                //Sets up a git object
-                diff git = new diff(file1, file2, args[0] ,args[1]);
-
-                //Checks for differences in the files
-                difference = git.GitDiff();
-
-                if (difference == true)
+                //Determines if the files can be compared
+                if (SameCheck == true)
                 {
-                    //Lets the user know the files are different
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("files {0} and {1} are different",args[0], args[1]);
-                    Console.ForegroundColor = ConsoleColor.White;
+
+                    //Sets up a git object
+                    diff git = new diff(file1, file2, args[0], args[1]);
+
+                    //Checks for differences in the files
+                    git.GitDiff();
 
                 }
+
                 else
                 {
-                    //Lets the user know the files are the same
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("These files are the same");
-                    Console.ForegroundColor = ConsoleColor.White;
-
+                    Console.WriteLine("Files {0} and {1} are not comparable", args[0], args[1]);
                 }
 
             }

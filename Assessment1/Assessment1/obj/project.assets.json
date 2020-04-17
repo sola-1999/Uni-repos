@@ -10,20 +10,20 @@
   "packageFolders": {
     "C:\\Users\\maxja\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maxja\\Source\\Repos\\Uni-repos\\Assessment1\\Assessment1\\Assessment1.csproj",
+      "projectUniqueName": "C:\\Users\\maxja\\source\\repos\\Uni-repos\\Assessment1\\Assessment1\\Assessment1.csproj",
       "projectName": "Assessment1",
-      "projectPath": "C:\\Users\\maxja\\Source\\Repos\\Uni-repos\\Assessment1\\Assessment1\\Assessment1.csproj",
+      "projectPath": "C:\\Users\\maxja\\source\\repos\\Uni-repos\\Assessment1\\Assessment1\\Assessment1.csproj",
       "packagesPath": "C:\\Users\\maxja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maxja\\Source\\Repos\\Uni-repos\\Assessment1\\Assessment1\\obj\\",
+      "outputPath": "C:\\Users\\maxja\\source\\repos\\Uni-repos\\Assessment1\\Assessment1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\maxja\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -65,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
