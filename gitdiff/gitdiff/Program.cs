@@ -14,7 +14,6 @@ namespace gitdiff
             string[] file2;
 
 
-            bool difference;
 
             //Stores if the two files can be compared
             bool SameCheck;

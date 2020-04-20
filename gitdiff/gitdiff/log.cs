@@ -9,8 +9,8 @@ namespace gitdiff
     class log
     {
         //Stores names of the file
-        private string f1name;
-        private string f2name;
+        private string f1name { get; set; }
+        private string f2name { get; set; };
         public log(string f1, string f2)
         {
             //Takes file name parameters and stores them
