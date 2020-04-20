@@ -6,12 +6,17 @@ namespace gitdiff
 {
     class output : diff
     {
+        //Stores the string to be output
         private List<string> OutputString { get; set; }
+
+        //Stores string with differences in both files
         private string logString1 { get; set; }
         private string logString2 { get; set; }
 
+        //Stores a log object
         private log logtofile { get; set; }
 
+        //Stores final output
         private string result { get; set; }
 
         
@@ -41,7 +46,7 @@ namespace gitdiff
             logString1 = "";
             logString2 = "";
             
-            //Stores the string with the difference
+            //Stores the string with the difference for both files
             while (i <= x + 1)
             {
                 OutputString.Add(file2words[i]);
@@ -51,6 +56,7 @@ namespace gitdiff
 
             }
 
+            //Runs method to update log
             logtofile.entrylog(logString1, logString2, lineNumber);
 
         }

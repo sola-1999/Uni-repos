@@ -8,12 +8,16 @@ namespace gitdiff
 {
     class log
     {
+        //Stores names of the file
         private string f1name;
         private string f2name;
         public log(string f1, string f2)
         {
+            //Takes file name parameters and stores them
             f1name = f1;
             f2name = f2;
+
+            //Opens log file and appends a new log
             using (StreamWriter addEntry = File.AppendText("logfile,txt"))
             {
 
@@ -25,6 +29,7 @@ namespace gitdiff
 
         public void entrylog(string entry1, string entry2, int ln)
         {
+            //Adds a difference in the files to the log
             using (StreamWriter addEntry = File.AppendText("logfile,txt"))
             {
                 
@@ -38,6 +43,7 @@ namespace gitdiff
 
         public void entrylog(string entry)
         {
+            //Outputs the final comparion of the file to the log
             using (StreamWriter addEntry = File.AppendText("logfile,txt"))
             {
                 
