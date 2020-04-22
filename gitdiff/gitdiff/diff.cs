@@ -1,6 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+/*
+ *Title      : gitdiff
+ *Form       : diff.cs
+ *Use        : finds difference between two files
+ *Creator    : Max Jameson
+ *Student ID : 19702735
+ */
 
 
 namespace gitdiff

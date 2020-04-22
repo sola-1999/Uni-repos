@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+/*
+ *Title      : gitdiff
+ *Form       : log.cs
+ *Use        : hanldes output to the log file
+ *Creator    : Max Jameson
+ *Student ID : 19702735
+ */
 
 
 namespace gitdiff
@@ -10,7 +17,7 @@ namespace gitdiff
     {
         //Stores names of the file
         private string f1name { get; set; }
-        private string f2name { get; set; };
+        private string f2name { get; set; }
         public log(string f1, string f2)
         {
             //Takes file name parameters and stores them

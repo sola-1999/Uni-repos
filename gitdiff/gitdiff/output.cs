@@ -1,6 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+/*
+ *Title      : gitdiff
+ *Form       : output.cs
+ *Use        : handles outputing to the command prompt
+ *Creator    : Max Jameson
+ *Student ID : 19702735
+ */
 
 namespace gitdiff
 {

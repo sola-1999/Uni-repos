@@ -1,5 +1,12 @@
 ﻿using System;
 using System.IO;
+/*
+ *Title      : gitdiff
+ *Form       : Program.cs
+ *Use        : runs gitdiff
+ *Creator    : Max Jameson
+ *Student ID : 19702735
+ */
 
 namespace gitdiff
 {

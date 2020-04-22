@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+/*
+ *Title      : gitdiff
+ *Form       : fileCheck.cs
+ *Use        : checks if selected files exist
+ *Creator    : Max Jameson
+ *Student ID : 19702735
+ */
 
 namespace gitdiff
 {
